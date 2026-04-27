@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Midterm Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --card: #14181f;
+    --border: #1e2530;
+    --accent: #f0c040;
+    --accent2: #4fc3f7;
+    --text: #e8eaf0;
+    --muted: #7a8390;
+    --correct: #4caf82;
+    --wrong: #e05c6e;
+    --correct-bg: #0d2e1f;
+    --wrong-bg: #2e0d16;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* START SCREEN */
+  #start-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background: radial-gradient(ellipse at 60% 30%, #1a2235 0%, #0d0f14 70%);
+    text-align: center;
+  }
+
+  .logo-badge {
+    background: var(--accent);
+    color: #000;
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+
+  #start-screen h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+
+  #start-screen h1 span { color: var(--accent); }
+
+  #start-screen p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 480px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .topic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    max-width: 540px;
+    margin-bottom: 44px;
+  }
+
+  .topic-pill {
+    background: #1a2235;
+    border: 1px solid var(--border);
+    color: var(--accent2);
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+  }
+
+  .start-btn {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 16px 48px;
+    border-radius: 4px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 0 0 0 rgba(240,192,64,0.4);
+  }
+
+  .start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(240,192,64,0.25);
+  }
+
+  /* QUIZ SCREEN */
+  #quiz-screen { display: none; min-height: 100vh; }
+
+  .quiz-header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .quiz-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .progress-wrap {
+    flex: 1;
+    margin: 0 32px;
+  }
+
+  .progress-bar-bg {
+    background: var(--border);
+    border-radius: 100px;
+    height: 6px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    height: 100%;
+    border-radius: 100px;
+    transition: width 0.4s cubic-bezier(.4,0,.2,1);
+  }
+
+  .progress-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  .score-display {
+    background: #1a2235;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .quiz-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  .q-category {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 12px;
+  }
+
+  .q-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .q-text {
+    font-size: 1.2rem;
+    line-height: 1.65;
+    color: #fff;
+    margin-bottom: 32px;
+    font-weight: 400;
+  }
+
+  .q-text .highlight {
+    background: rgba(240,192,64,0.15);
+    border-bottom: 2px solid var(--accent);
+    padding: 1px 4px;
+    border-radius: 2px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .option-btn {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    padding: 16px 20px;
+    border-radius: 8px;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.18s, background 0.18s, transform 0.12s;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    line-height: 1.5;
+  }
+
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--accent2);
+    background: #1a2235;
+    transform: translateX(4px);
+  }
+
+  .option-letter {
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--border);
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    transition: background 0.18s, color 0.18s;
+  }
+
+  .option-btn.correct {
+    background: var(--correct-bg);
+    border-color: var(--correct);
+  }
+
+  .option-btn.correct .option-letter {
+    background: var(--correct);
+    color: #fff;
+  }
+
+  .option-btn.wrong {
+    background: var(--wrong-bg);
+    border-color: var(--wrong);
+  }
+
+  .option-btn.wrong .option-letter {
+    background: var(--wrong);
+    color: #fff;
+  }
+
+  .option-btn:disabled { cursor: default; }
+
+  .explanation-box {
+    margin-top: 20px;
+    background: #111827;
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: #c8d0dc;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .explanation-box strong { color: var(--accent); }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .next-btn {
+    margin-top: 24px;
+    background: transparent;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 12px 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: none;
+    transition: background 0.18s, color 0.18s;
+  }
+
+  .next-btn:hover {
+    background: var(--accent);
+    color: #000;
+  }
+
+  /* RESULTS SCREEN */
+  #results-screen {
+    display: none;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background: radial-gradient(ellipse at 40% 60%, #1a2235 0%, #0d0f14 70%);
+  }
+
+  .results-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 52px 48px;
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .score-ring {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent) 0%, var(--border) 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+    position: relative;
+  }
+
+  .score-ring-inner {
+    width: 96px;
+    height: 96px;
+    background: var(--card);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .score-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .score-pct-label {
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+
+  .results-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+  }
+
+  .results-sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+
+  .stat-box {
+    flex: 1;
+    background: #1a2235;
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .stat-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+  }
+
+  .stat-val.green { color: var(--correct); }
+  .stat-val.red { color: var(--wrong); }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+  }
+
+  .restart-btn {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 14px 40px;
+    border-radius: 4px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .restart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(240,192,64,0.25);
+  }
+
+  @media (max-width: 600px) {
+    .quiz-header { padding: 12px 16px; }
+    .progress-wrap { margin: 0 12px; }
+    .quiz-body { padding: 32px 16px 60px; }
+    .q-number { font-size: 2rem; }
+    .q-text { font-size: 1.05rem; }
+    .results-card { padding: 36px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- START -->
+<div id="start-screen">
+  <div class="logo-badge">Hamdard University · ENG-01</div>
+  <h1>English <span>Midterm</span><br>Quiz</h1>
+  <p>40 questions covering Tenses, Clauses, Types of Verbs, Parts of Speech, and Vocabulary. Select an answer to see the explanation instantly.</p>
+  <div class="topic-grid">
+    <span class="topic-pill">Tenses</span>
+    <span class="topic-pill">Parts of Speech</span>
+    <span class="topic-pill">Types of Verbs</span>
+    <span class="topic-pill">Clauses</span>
+    <span class="topic-pill">Sentence Types</span>
+    <span class="topic-pill">Vocabulary</span>
+    <span class="topic-pill">Present Tenses Usage</span>
+    <span class="topic-pill">Adjectives</span>
+  </div>
+  <button class="start-btn" onclick="startQuiz()">Start Quiz →</button>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz-screen">
+  <div class="quiz-header">
+    <div class="quiz-brand">ENG-01 Quiz</div>
+    <div class="progress-wrap">
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+      <div class="progress-label" id="progress-label">Question 1 of 40</div>
+    </div>
+    <div class="score-display" id="score-display">Score: 0</div>
+  </div>
+  <div class="quiz-body">
+    <div class="q-category" id="q-category"></div>
+    <div class="q-number" id="q-number"></div>
+    <div class="q-text" id="q-text"></div>
+    <div class="options-grid" id="options-grid"></div>
+    <div class="explanation-box" id="explanation-box"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next Question →</button>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div id="results-screen">
+  <div class="results-card">
+    <div class="score-ring" id="score-ring">
+      <div class="score-ring-inner">
+        <div class="score-pct" id="score-pct">0%</div>
+        <div class="score-pct-label">SCORE</div>
+      </div>
+    </div>
+    <div class="results-title" id="results-title">Quiz Complete!</div>
+    <div class="results-sub" id="results-sub"></div>
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-val green" id="correct-count">0</div>
+        <div class="stat-label">Correct</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val red" id="wrong-count">0</div>
+        <div class="stat-label">Wrong</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" id="total-count" style="color:var(--accent2)">40</div>
+        <div class="stat-label">Total</div>
+      </div>
+    </div>
+    <button class="restart-btn" onclick="restartQuiz()">Retake Quiz</button>
+  </div>
+</div>
+
+<script>
+const questions = [
+  // TENSES (Q1–13)
+  {
+    cat: "Tenses",
+    q: "By the time she arrives, I <span class='highlight'>will have cooked</span> dinner. — What tense is the highlighted verb?",
+    opts: ["Future Continuous", "Future Indefinite", "Future Perfect", "Future Perfect Continuous"],
+    ans: 2,
+    exp: "<strong>Future Perfect</strong> = will have + V3. It expresses an action that will be completed before a specific future moment. Signal phrase: 'by the time she arrives'."
+  },
+  {
+    cat: "Tenses",
+    q: "Which sentence is in the <strong>Past Continuous</strong> tense?",
+    opts: ["She had eaten before he came.", "She was eating when he called.", "She ate quickly.", "She has eaten already."],
+    ans: 1,
+    exp: "<strong>Past Continuous</strong> = was/were + V-ing. 'She was eating when he called' shows an ongoing past action interrupted by another past event (he called)."
+  },
+  {
+    cat: "Tenses",
+    q: "'We <span class='highlight'>have not seen</span> her today.' — The word 'today' here suggests:",
+    opts: ["The day is over, so Simple Past is needed", "The day is still ongoing — Present Perfect is correct", "Future tense should be used", "Past Perfect should be used"],
+    ans: 1,
+    exp: "Present Perfect is used because <strong>'today' is an unfinished period</strong> — the day is not yet over. If the day had ended, Simple Past ('We did not see her today') would be more natural."
+  },
+  {
+    cat: "Tenses",
+    q: "Select the correct <strong>Past Perfect Continuous</strong> sentence:",
+    opts: ["She has been working all day.", "She had been working for three hours when the power cut.", "She was working when I arrived.", "She will have been working by noon."],
+    ans: 1,
+    exp: "<strong>Past Perfect Continuous</strong> = had + been + V-ing. It emphasizes the duration of an action before another past event. 'For three hours' signals duration; 'when the power cut' is the interrupting past event."
+  },
+  {
+    cat: "Tenses",
+    q: "I <span class='highlight'>lived</span> in Fiji in 1976. — This Simple Past sentence uses:",
+    opts: ["An indefinite time reference", "A definite time reference", "No time reference", "A future time reference"],
+    ans: 1,
+    exp: "Simple Past with a <strong>definite time reference</strong> ('in 1976'). Definite references include: last week, yesterday, in 1990, six weeks ago. These always require Simple Past, never Present Perfect."
+  },
+  {
+    cat: "Tenses",
+    q: "Which auxiliary is used in <strong>Future Continuous</strong> tense?",
+    opts: ["Will have", "Will be", "Shall have been", "Has been"],
+    ans: 1,
+    exp: "<strong>Future Continuous</strong> = will be + V-ing. E.g., 'She will be doing this work at noon.' It describes an action in progress at a specific future time."
+  },
+  {
+    cat: "Tenses",
+    q: "'It <span class='highlight'>has rained</span> a lot this year.' — Why is Present Perfect used here?",
+    opts: ["Because the exact date of rain is known", "Because 'this year' is still an unfinished period", "Because it describes a future possibility", "Because the rain is a habitual action"],
+    ans: 1,
+    exp: "'This year' is an <strong>unfinished period</strong> — the year is not yet over. Present Perfect is used for actions during a period that has not ended. Compare: 'It rained a lot last year' (finished period → Simple Past)."
+  },
+  {
+    cat: "Tenses",
+    q: "Which sentence correctly uses <strong>Present Perfect</strong> to describe a very recent action?",
+    opts: ["She just finished her work.", "She has just finished her work.", "She was just finishing her work.", "She had just finished her work."],
+    ans: 1,
+    exp: "<strong>Present Perfect + 'just'</strong> expresses an action completed in the very recent past. 'Just' always sits between have/has and the past participle. E.g., 'I have just eaten.' / 'He has just left.'"
+  },
+  {
+    cat: "Tenses",
+    q: "John Cabot <span class='highlight'>sailed</span> to America in 1498. — This is Simple Past because:",
+    opts: ["The time is unspecified", "The exact year (1498) makes it a completed action at a definite time", "It describes a habit", "It is an ongoing action"],
+    ans: 1,
+    exp: "<strong>Simple Past</strong> is required when a specific time is given ('in 1498'). This is a completed historical action at a known, definite point in time. Present Perfect cannot be used with specific past time expressions."
+  },
+  {
+    cat: "Tenses",
+    q: "What is the correct structure for <strong>Present Continuous</strong> tense?",
+    opts: ["Do/does + V1", "Is/am/are + V-ing", "Has/have + V3", "Was/were + V3"],
+    ans: 1,
+    exp: "<strong>Present Continuous</strong> = is/am/are + V-ing. E.g., 'She is doing this work.' Used for actions happening at the moment of speaking or for future arranged plans."
+  },
+  {
+    cat: "Tenses",
+    q: "'She <span class='highlight'>has studied</span> Japanese, Russian, and English.' — The Present Perfect here emphasizes:",
+    opts: ["When exactly she studied", "Where she studied", "The result/experience — that she has this knowledge", "That she is currently studying"],
+    ans: 2,
+    exp: "When <strong>time is not important or unknown</strong>, Present Perfect focuses on the <em>result or experience</em>. We care that she has this ability, not when she acquired it. The same applies to: 'He has read War and Peace.'"
+  },
+  {
+    cat: "Tenses",
+    q: "Which sentence is grammatically correct?",
+    opts: ["I have seen him yesterday.", "I saw him yesterday.", "I have saw him yesterday.", "I had saw him yesterday."],
+    ans: 1,
+    exp: "<strong>'Yesterday'</strong> is a specific, completed time reference, so <strong>Simple Past</strong> is required: 'I saw him yesterday.' Present Perfect ('have seen') cannot be used with definite past time expressions like yesterday, last week, in 2010."
+  },
+  {
+    cat: "Tenses",
+    q: "He <span class='highlight'>has been reading</span> since morning. — What does 'since' signal in this tense?",
+    opts: ["Duration with a specific start point", "A repeated action", "A definite past time", "A future arrangement"],
+    ans: 0,
+    exp: "'<strong>Since</strong>' marks the <em>starting point</em> of an action that continues to the present. Used with Present Perfect and Present Perfect Continuous. Compare: '<strong>for</strong>' + duration (for two hours); '<strong>since</strong>' + start point (since morning)."
+  },
+
+  // CLAUSES & SENTENCE TYPES (Q14–23)
+  {
+    cat: "Clauses",
+    q: "How many clauses does this sentence have: 'The moon was bright.'?",
+    opts: ["Zero", "One", "Two", "Three"],
+    ans: 1,
+    exp: "<strong>One clause</strong> — this is a simple sentence with a single subject ('the moon') and verb ('was'). A simple sentence contains exactly one independent clause and no dependent clauses."
+  },
+  {
+    cat: "Clauses",
+    q: "Identify the sentence type: 'She studied hard because she wanted to pass, and she succeeded.'",
+    opts: ["Simple sentence", "Compound sentence", "Complex sentence", "Compound-Complex sentence"],
+    ans: 3,
+    exp: "<strong>Compound-Complex</strong>: contains at least two independent clauses ('She studied hard' + 'she succeeded') AND at least one dependent clause ('because she wanted to pass'). It combines features of both compound and complex sentences."
+  },
+  {
+    cat: "Clauses",
+    q: "In '<span class='highlight'>Can you tell me what languages he speaks</span>?' — the highlighted part contains what type of clause?",
+    opts: ["Coordinate Clause", "Main Clause only", "A subordinate clause introduced by the relative adjective 'what'", "A compound clause"],
+    ans: 2,
+    exp: "'<strong>what languages he speaks</strong>' is a <strong>subordinate clause</strong> introduced by the relative adjective 'what'. 'What' modifies 'languages' (noun) and introduces the embedded clause inside the main question."
+  },
+  {
+    cat: "Clauses",
+    q: "Which of the following is NOT a subordinating conjunction?",
+    opts: ["Although", "Whenever", "But", "Because"],
+    ans: 2,
+    exp: "'<strong>But</strong>' is a <em>coordinating conjunction</em> (part of FANBOYS), not a subordinating one. Coordinating conjunctions join independent clauses of equal rank. Subordinating conjunctions (although, whenever, because, if, when) introduce dependent clauses."
+  },
+  {
+    cat: "Clauses",
+    q: "'<span class='highlight'>They rested</span> when evening came.' — Which part is the main clause?",
+    opts: ["when evening came", "They rested", "evening came", "when evening"],
+    ans: 1,
+    exp: "<strong>'They rested'</strong> is the main (independent) clause — it expresses a complete thought and can stand alone as a sentence. 'When evening came' is the subordinate clause (introduced by 'when') — it cannot stand alone."
+  },
+  {
+    cat: "Clauses",
+    q: "A <strong>simple sentence</strong> contains:",
+    opts: ["One independent clause and one dependent clause", "Two independent clauses", "Only one independent clause with no dependent clauses", "At least three clauses"],
+    ans: 2,
+    exp: "A <strong>simple sentence</strong> has exactly <em>one independent clause</em> and no dependent clauses. E.g., 'The moon was bright.' It may have modifiers and phrases, but only one subject-verb core."
+  },
+  {
+    cat: "Clauses",
+    q: "What makes 'when evening came' a subordinate clause?",
+    opts: ["It has no verb", "It is introduced by 'when' and cannot stand alone as a complete sentence", "It has two subjects", "It contains a modal verb"],
+    ans: 1,
+    exp: "A subordinate clause has a subject and verb but is introduced by a <strong>subordinating conjunction</strong> ('when') and <em>cannot stand alone</em>. 'When evening came' — can you say this as a complete sentence? No. That is what makes it dependent."
+  },
+  {
+    cat: "Clauses",
+    q: "'Whatever decision you take, I can support you.' — This is an example of a:",
+    opts: ["Compound sentence", "Simple sentence", "Complex sentence", "Coordinate clause"],
+    ans: 2,
+    exp: "<strong>Complex sentence</strong>: 'Whatever decision you take' is a subordinate clause (dependent); 'I can support you' is the main clause (independent). The relative adjective 'whatever' introduces the dependent clause."
+  },
+  {
+    cat: "Clauses",
+    q: "Coordinate clauses are joined by coordinating conjunctions. Which set below are ALL coordinating conjunctions?",
+    opts: ["When, if, because, although", "And, but, so, or", "Since, until, unless, while", "Who, which, that, where"],
+    ans: 1,
+    exp: "<strong>And, but, so, or</strong> are all coordinating conjunctions (FANBOYS: For, And, Nor, But, Or, Yet, So). They join clauses of equal grammatical rank. The other options are subordinating conjunctions or relative pronouns."
+  },
+  {
+    cat: "Clauses",
+    q: "Which sentence contains a <strong>relative adjective</strong>?",
+    opts: ["He came when I called.", "She doesn't know which road to take.", "They left because it was late.", "I stayed although it was cold."],
+    ans: 1,
+    exp: "'<strong>which road</strong>' — 'which' is a <strong>relative adjective</strong> modifying the noun 'road'. Compare: 'Which did she take?' (relative pronoun — replaces noun) vs 'which road' (relative adjective — modifies noun)."
+  },
+  {
+    cat: "Clauses",
+    q: "How many independent clauses does a compound sentence have?",
+    opts: ["Zero", "Exactly one", "Two or more", "It depends on the subordinating conjunction"],
+    ans: 2,
+    exp: "A <strong>compound sentence</strong> has <em>two or more independent clauses</em> joined by coordinating conjunctions or a semicolon. Crucially, it contains <em>no dependent clauses</em> — that would make it complex or compound-complex."
+  },
+
+  // TYPES OF VERBS (Q24–33)
+  {
+    cat: "Types of Verbs",
+    q: "'Alicia <span class='highlight'>has not spoken</span> to me for a week.' — 'has' is functioning as:",
+    opts: ["A linking verb", "A stative verb", "An auxiliary (helping) verb", "A modal verb"],
+    ans: 2,
+    exp: "<strong>Auxiliary verb</strong>: 'has' helps form the Present Perfect tense and the negative construction. Auxiliary verbs (be, do, have) are always conjugated and work with a main verb to express tense, mood, or voice."
+  },
+  {
+    cat: "Types of Verbs",
+    q: "Which sentence contains a <strong>linking verb</strong>?",
+    opts: ["She runs every morning.", "He seems very tired today.", "They built a new house.", "I moved out last month."],
+    ans: 1,
+    exp: "'<strong>Seems</strong>' is a linking verb — it connects the subject ('he') to the subject complement ('very tired'). Common linking verbs: be, seem, become, feel, appear, look, smell, taste, sound."
+  },
+  {
+    cat: "Types of Verbs",
+    q: "Why can't we say '<span class='highlight'>X She is knowing the answer</span>'?",
+    opts: ["'Know' is a transitive verb", "'Know' is a stative verb — stative verbs cannot be used in continuous tenses", "'Know' is an irregular verb", "'Know' is a modal verb"],
+    ans: 1,
+    exp: "<strong>Stative verbs</strong> describe mental states, emotions, or perceptions and <em>cannot be used in progressive tenses</em>. 'Know' describes a mental state. Correct form: 'She knows the answer.' Other examples: believe, love, hate, seem, belong."
+  },
+  {
+    cat: "Types of Verbs",
+    q: "'Talia <span class='highlight'>ought to</span> perform at the talent show.' — 'ought to' is a:",
+    opts: ["Phrasal verb", "Dynamic verb", "Modal verb", "Linking verb"],
+    ans: 2,
+    exp: "<strong>Modal verb</strong>: 'ought to' expresses obligation or recommendation. It functions like other modals (should, must) but always takes 'to'. Modal verbs do not change form based on subject. Other modals: can, could, may, might, will, would."
+  },
+  {
+    cat: "Types of Verbs",
+    q: "Which of these is a <strong>phrasal verb</strong>?",
+    opts: ["Run", "Is running", "Give up", "Has run"],
+    ans: 2,
+    exp: "<strong>'Give up'</strong> = phrasal verb (verb + preposition/adverb) meaning 'to quit or stop'. The combined meaning is independent of the original words. Other examples: break down, look up, turn off, come across, move out."
+  },
+  {
+    cat: "Types of Verbs",
+    q: "'Did you <span class='highlight'>enjoy</span> the meal?' — 'did' here is:",
+    opts: ["A modal verb", "A main verb", "An auxiliary verb used to form a question", "A linking verb"],
+    ans: 2,
+    exp: "<strong>Auxiliary 'do/did'</strong> is used to form questions and negatives in Simple Past and Simple Present. 'Did' is the past form. The main verb ('enjoy') remains in its base form (V1) after the auxiliary."
+  },
+  {
+    cat: "Types of Verbs",
+    q: "Which sentence contains a <strong>dynamic (action) verb</strong> used in continuous form correctly?",
+    opts: ["She is believing in herself.", "He is knowing the truth.", "They are building a new school.", "I am belonging to the club."],
+    ans: 2,
+    exp: "'<strong>Building</strong>' is a <strong>dynamic (action) verb</strong> — it describes a specific, ongoing physical activity and can correctly be used in the continuous tense. Believe, know, and belong are stative verbs and cannot take the continuous form."
+  },
+  {
+    cat: "Types of Verbs",
+    q: "Tina <span class='highlight'>will have finished</span> her course by the end of next month. — 'finished' here is the past participle of a:",
+    opts: ["Modal verb", "Irregular verb", "Regular verb", "Stative verb"],
+    ans: 2,
+    exp: "<strong>Regular verb</strong>: 'finish → finished → finished'. Regular verbs form both simple past and past participle by adding '-ed'. This sentence uses Future Perfect tense (will have + V3)."
+  },
+  {
+    cat: "Types of Verbs",
+    q: "Which of these pairs shows a verb being used first as a <strong>linking verb</strong>, then as an <strong>action verb</strong>?",
+    opts: ["'She runs' / 'She ran'", "'The soup smells good' / 'She smells the soup'", "'He has gone' / 'He goes'", "'I believe' / 'I am believing'"],
+    ans: 1,
+    exp: "'<strong>The soup smells good</strong>' — 'smells' is a <strong>linking verb</strong> (connects subject to complement 'good'). '<strong>She smells the soup</strong>' — 'smells' is an <strong>action verb</strong> (she is actively sniffing it). Most linking verbs can double as action verbs."
+  },
+  {
+    cat: "Types of Verbs",
+    q: "'I <span class='highlight'>had swum</span> almost a mile when the island came into view.' — 'swum' is:",
+    opts: ["Simple past of 'swim'", "Past participle of the irregular verb 'swim'", "Present participle of 'swim'", "Past participle of a regular verb"],
+    ans: 1,
+    exp: "'<strong>Swum</strong>' is the <strong>past participle</strong> of the <strong>irregular verb</strong> 'swim'. Conjugation: swim (base) → swam (simple past) → swum (past participle). Used here in Past Perfect: had + swum."
+  },
+
+  // PARTS OF SPEECH / NOUNS & ADJECTIVES (Q34–37)
+  {
+    cat: "Parts of Speech",
+    q: "A verb is defined as:",
+    opts: ["A word that describes a noun", "A word that describes what the subject is doing — indicating actions, occurrences, or states of being", "A word that joins clauses", "A word that replaces a noun"],
+    ans: 1,
+    exp: "A <strong>verb</strong> describes what the subject <em>does, experiences, or is</em>. Verbs indicate physical actions (run, kick), mental actions (think, believe), occurrences (happen, become), and states of being (is, seem, belong)."
+  },
+  {
+    cat: "Parts of Speech",
+    q: "In 'She is <span class='highlight'>proud</span>', 'proud' is an adjective functioning as a:",
+    opts: ["Attributive adjective (before a noun)", "Subject complement (after a linking verb)", "Adverb modifying a verb", "Object complement"],
+    ans: 1,
+    exp: "'Proud' here is a <strong>subject complement (predicative adjective)</strong> — it follows the linking verb 'is' and describes the subject 'she'. Contrast with attributive use: 'She is a <em>proud</em> person' (adjective before noun)."
+  },
+  {
+    cat: "Parts of Speech",
+    q: "How many tenses exist in English <strong>Active Voice</strong> according to your course material?",
+    opts: ["8", "10", "12", "16"],
+    ans: 2,
+    exp: "According to the course material, English Active Voice has <strong>12 tenses</strong>: 4 present (Indefinite, Continuous, Perfect, Perfect Continuous), 4 past, and 4 future. Passive Voice has only 8 tenses."
+  },
+  {
+    cat: "Parts of Speech",
+    q: "Which word in this sentence is functioning as a <strong>relative adjective</strong>: 'I shall encourage you, whichever career you choose.'?",
+    opts: ["I", "shall", "whichever", "choose"],
+    ans: 2,
+    exp: "<strong>'Whichever'</strong> is the relative adjective — it modifies the noun 'career' (whichever career) and simultaneously introduces the subordinate clause 'whichever career you choose'. Relative adjectives: what, which, whatever, whichever."
+  },
+
+  // VOCABULARY (Q38–40)
+  {
+    cat: "Vocabulary",
+    q: "Which sentence uses <strong>'shriek'</strong> correctly?",
+    opts: ["She shrieked calmly at the good news.", "He shrieked with laughter when he heard the joke.", "The shriek was very silent.", "She shrieked the book onto the shelf."],
+    ans: 1,
+    exp: "<strong>Shriek</strong> (verb/noun): to make a loud, high-pitched cry or sound, usually from shock, fear, or excitement. E.g., 'She shrieked in terror.' / 'We heard a shriek from the next room.' Synonym: scream, screech."
+  },
+  {
+    cat: "Vocabulary",
+    q: "'He <span class='highlight'>tempted</span> her with the offer of a promotion.' — What does 'tempt' mean?",
+    opts: ["To threaten someone forcefully", "To entice or attract someone toward something, often something they should resist", "To punish someone for a mistake", "To ignore someone deliberately"],
+    ans: 1,
+    exp: "<strong>Tempt</strong> (verb): to entice or attract someone toward doing something, often something they find hard to resist. E.g., 'Don't tempt me with chocolate.' / 'He was tempted to quit.' Noun form: temptation."
+  },
+  {
+    cat: "Vocabulary",
+    q: "Which sentence uses <strong>'inhabit'</strong> correctly?",
+    opts: ["She inhabited the book in one evening.", "Many rare species inhabit the rainforest.", "He inhabited his homework quickly.", "They inhabited a loud argument."],
+    ans: 1,
+    exp: "<strong>Inhabit</strong> (verb): to live in or occupy a place as a resident or habitat. Used for both people and animals. E.g., 'Thousands of species inhabit the ocean.' / 'The island is inhabited by a small community.' Synonym: occupy, dwell in."
+  }
+];
+let currentQ = 0;
+let score = 0;
+let answered = false;
+
+function startQuiz() {
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('quiz-screen').style.display = 'block';
+  loadQuestion();
+}
+
+function loadQuestion() {
+  const q = questions[currentQ];
+  answered = false;
+
+  document.getElementById('q-category').textContent = q.cat;
+  document.getElementById('q-number').textContent = String(currentQ + 1).padStart(2, '0');
+  document.getElementById('q-text').innerHTML = q.q;
+  document.getElementById('explanation-box').style.display = 'none';
+  document.getElementById('next-btn').style.display = 'none';
+
+  const pct = ((currentQ) / questions.length) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `Question ${currentQ + 1} of ${questions.length}`;
+
+  const grid = document.getElementById('options-grid');
+  grid.innerHTML = '';
+  const letters = ['A', 'B', 'C', 'D'];
+  q.opts.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="option-letter">${letters[i]}</span><span>${opt}</span>`;
+    btn.onclick = () => selectAnswer(i, btn);
+    grid.appendChild(btn);
+  });
+}
+
+function selectAnswer(idx, btn) {
+  if (answered) return;
+  answered = true;
+
+  const q = questions[currentQ];
+  const btns = document.querySelectorAll('.option-btn');
+
+  btns.forEach(b => b.disabled = true);
+
+  if (idx === q.ans) {
+    btn.classList.add('correct');
+    score++;
+  } else {
+    btn.classList.add('wrong');
+    btns[q.ans].classList.add('correct');
+  }
+
+  document.getElementById('score-display').textContent = `Score: ${score}`;
+
+  const expBox = document.getElementById('explanation-box');
+  expBox.innerHTML = '💡 ' + q.exp;
+  expBox.style.display = 'block';
+
+  const nextBtn = document.getElementById('next-btn');
+  nextBtn.style.display = 'inline-block';
+  if (currentQ === questions.length - 1) {
+    nextBtn.textContent = 'See Results →';
+  } else {
+    nextBtn.textContent = 'Next Question →';
+  }
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= questions.length) {
+    showResults();
+  } else {
+    loadQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function showResults() {
+  document.getElementById('quiz-screen').style.display = 'none';
+  const rs = document.getElementById('results-screen');
+  rs.style.display = 'flex';
+
+  const pct = Math.round((score / questions.length) * 100);
+  document.getElementById('score-pct').textContent = pct + '%';
+  document.getElementById('correct-count').textContent = score;
+  document.getElementById('wrong-count').textContent = questions.length - score;
+
+  // Animate ring
+  const ring = document.getElementById('score-ring');
+  ring.style.background = `conic-gradient(var(--accent) ${pct * 3.6}deg, var(--border) ${pct * 3.6}deg)`;
+
+  let title, sub;
+  if (pct >= 90) { title = "Outstanding! 🎉"; sub = "Excellent command of English grammar and vocabulary. You're well-prepared for your midterm!"; }
+  else if (pct >= 75) { title = "Great Work! 👏"; sub = "Strong performance! Review the questions you missed and you'll be fully ready for the exam."; }
+  else if (pct >= 60) { title = "Good Effort! 📚"; sub = "Solid foundation, but spend extra time on the topics where you struggled."; }
+  else if (pct >= 40) { title = "Keep Studying! 💪"; sub = "You have the basics down. Focus on reviewing tenses, clause types, and verb categories before your midterm."; }
+  else { title = "Need More Review 📖"; sub = "Go back through your notes on tenses, clauses, and verb types. Retake this quiz after reviewing!"; }
+
+  document.getElementById('results-title').textContent = title;
+  document.getElementById('results-sub').textContent = sub;
+}
+
+function restartQuiz() {
+  currentQ = 0;
+  score = 0;
+  document.getElementById('results-screen').style.display = 'none';
+  document.getElementById('score-display').textContent = 'Score: 0';
+  document.getElementById('quiz-screen').style.display = 'block';
+  loadQuestion();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
