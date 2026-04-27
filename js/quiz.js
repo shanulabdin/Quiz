@@ -93,7 +93,7 @@ function showResults() {
   else { title = "Need More Review 📖"; sub = "Go back through your notes on tenses, clauses, and verb types. Retake this quiz after reviewing!"; }
 
   document.getElementById('results-title').textContent = title;
-  document.getElementById('results-sub').textContent = sub;
+    
 }
 
 function restartQuiz() {
