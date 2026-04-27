@@ -102,6 +102,7 @@
     box-shadow: 0 0 0 0 rgba(240, 114, 64, 0.4);
     text-decoration: none;
     display: inline-block;
+    margin: 2px auto;
   }
 
   .start-btn:hover, .quiz-link-btn:hover {
