@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Midterm Quiz</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- QUIZ -->
+<div id="quiz-screen">
+  <div class="quiz-header">
+    <div class="quiz-brand">ENG-01 Quiz</div>
+    <div class="progress-wrap">
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+      <div class="progress-label" id="progress-label">Question 1 of 40</div>
+    </div>
+    <div class="score-display" id="score-display">Score: 0</div>
+  </div>
+  <div class="quiz-body">
+    <div class="q-category" id="q-category"></div>
+    <div class="q-number" id="q-number"></div>
+    <div class="q-text" id="q-text"></div>
+    <div class="options-grid" id="options-grid"></div>
+    <div class="explanation-box" id="explanation-box"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQuestion()">Next Question →</button>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div id="results-screen">
+  <div class="results-card">
+    <div class="score-ring" id="score-ring">
+      <div class="score-ring-inner">
+        <div class="score-pct" id="score-pct">0%</div>
+        <div class="score-pct-label">SCORE</div>
+      </div>
+    </div>
+    <div class="results-title" id="results-title">Quiz Complete!</div>
+    <div class="results-sub" id="results-sub"></div>
+    <div class="stats-row">
+      <div class="stat-box">
+        <div class="stat-val green" id="correct-count">0</div>
+        <div class="stat-label">Correct</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val red" id="wrong-count">0</div>
+        <div class="stat-label">Wrong</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" id="total-count" style="color:var(--accent2)">40</div>
+        <div class="stat-label">Total</div>
+      </div>
+    </div>
+    <button class="restart-btn" onclick="restartQuiz()">Retake Quiz</button>
+  </div>
+</div>
+
+<script src="js/quizzes/math-2.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>
