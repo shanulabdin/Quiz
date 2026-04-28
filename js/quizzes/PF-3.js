@@ -1,483 +1,516 @@
 const questions = [
+  // ── Lecture 1: Problem Solving & Algorithms ──
   {
-    cat: "Loops & Tricky Syntax",
-    q: "What is the output of the following code snippet?<br><code>int i;<br>for(i = 0; i < 5; i++);<br>printf(\"%d\", i);</code>",
+    cat: "Problem Solving",
+    q: "What is the correct order of the four basic steps in problem solving?",
     opts: [
-      "01234",
+      "Generate solutions → Define problem → Evaluate → Implement",
+      "Define problem → Generate solutions → Evaluate → Implement",
+      "Evaluate → Define problem → Implement → Generate solutions",
+      "Implement → Define problem → Generate solutions → Evaluate"
+    ],
+    ans: 1,
+    exp: "The four steps in order are: (1) Define the problem, (2) Generate alternative solutions, (3) Evaluate and select an alternative, (4) Implement and follow up on the solution."
+  },
+  {
+    cat: "Problem Solving",
+    q: "Which of the following is TRUE about a computer?",
+    opts: [
+      "A computer can intelligently examine an issue and provide a solution on its own",
+      "A computer is not intelligent and needs a programmer to provide instructions",
+      "A computer can solve problems without any human input",
+      "A computer automatically generates algorithms"
+    ],
+    ans: 1,
+    exp: "A computer is NOT intelligent. It cannot examine an issue and provide a solution by itself. A programmer must assess the problem and provide the instructions."
+  },
+  {
+    cat: "Algorithms & Flowcharts",
+    q: "Which of the following is a quality of a good algorithm?",
+    opts: [
+      "It should be written in a specific programming language like C",
+      "Each step should be clear and unambiguous",
+      "It should only work for one type of problem",
+      "It should include computer code for efficiency"
+    ],
+    ans: 1,
+    exp: "A good algorithm must have clear and unambiguous steps. It should NOT include computer code and should be written so it can be used across different programming languages."
+  },
+  {
+    cat: "Algorithms & Flowcharts",
+    q: "What flowchart symbol is used for a Decision?",
+    opts: [
+      "Rectangle",
+      "Oval/Rounded rectangle",
+      "Parallelogram",
+      "Diamond"
+    ],
+    ans: 3,
+    exp: "The Diamond shape is the decision symbol in flowcharts. The oval is for Begin/End, the rectangle is for Process, and the parallelogram is for Input/Output."
+  },
+  // ── Lecture 2: Intro to C ──
+  {
+    cat: "C Basics",
+    q: "What does the <code>#include &lt;stdio.h&gt;</code> directive do?",
+    opts: [
+      "It defines the main function",
+      "It includes standard input/output functions like printf and scanf",
+      "It compiles the program",
+      "It declares all variables"
+    ],
+    ans: 1,
+    exp: "<stdio.h> stands for Standard Input/Output. It includes functions like printf() and scanf() that are used for displaying output and taking input."
+  },
+  {
+    cat: "C Basics",
+    q: "Which format specifier is used to print an <strong>integer</strong> in C?",
+    opts: [
+      "%f",
+      "%c",
+      "%d",
+      "%s"
+    ],
+    ans: 2,
+    exp: "%d is the format specifier for integers. %f is for float, %c is for char, and %s is for strings."
+  },
+  {
+    cat: "C Basics",
+    q: "What is the correct syntax to declare an integer variable <code>x</code> with value 5?",
+    opts: [
+      "int = x 5;",
+      "x int = 5;",
+      "int x = 5;",
+      "integer x = 5;"
+    ],
+    ans: 2,
+    exp: "The correct syntax is: type variableName = value; So 'int x = 5;' is correct."
+  },
+  {
+    cat: "C Basics",
+    q: "What is the purpose of the <code>&</code> (ampersand) operator in <code>scanf(\"%d\", &x)</code>?",
+    opts: [
+      "It performs a bitwise AND operation",
+      "It stores the memory address of the variable so scanf can write to it",
+      "It multiplies the variable by 2",
+      "It is optional and has no function"
+    ],
+    ans: 1,
+    exp: "The & (reference operator) gives the memory address of the variable. scanf() needs this address so it knows where to store the value the user types."
+  },
+  {
+    cat: "C Basics",
+    q: "Which escape sequence moves the cursor to a new line in C?",
+    opts: [
+      "\\t",
+      "\\r",
+      "\\n",
+      "\\b"
+    ],
+    ans: 2,
+    exp: "\\n is the newline escape sequence. \\t is tab, \\r is carriage return, and \\b is backspace."
+  },
+  {
+    cat: "C Basics",
+    q: "If a variable is declared but NOT initialized, what value does it hold?",
+    opts: [
+      "0 always",
+      "NULL",
+      "A garbage (unpredictable) value",
+      "-1"
+    ],
+    ans: 2,
+    exp: "Teacher's tip: If a variable is not initialized before being used, it might have a garbage value by default. Always initialize your variables!"
+  },
+  // ── ASCII & Data Types ──
+  {
+    cat: "ASCII & Data Types",
+    q: "What is the ASCII value of the character <strong>'A'</strong>?",
+    opts: [
+      "97",
+      "65",
+      "48",
+      "90"
+    ],
+    ans: 1,
+    exp: "ASCII codes for uppercase letters A-Z range from 65 to 90. So 'A' = 65, 'B' = 66, etc."
+  },
+  {
+    cat: "ASCII & Data Types",
+    q: "What is the ASCII value of lowercase <strong>'a'</strong>?",
+    opts: [
+      "65",
+      "90",
+      "97",
+      "122"
+    ],
+    ans: 2,
+    exp: "ASCII codes for lowercase letters a-z range from 97 to 122. So 'a' = 97, 'b' = 98, etc."
+  },
+  {
+    cat: "ASCII & Data Types",
+    q: "What will this code print?<br><pre>char alpha = 'A';\nprintf(\"%d\", alpha);</pre>",
+    opts: [
+      "A",
+      "97",
+      "65",
+      "Error"
+    ],
+    ans: 2,
+    exp: "When a char is printed with %d format specifier, it prints the ASCII value of that character. The ASCII value of 'A' is 65."
+  },
+  {
+    cat: "ASCII & Data Types",
+    q: "What will this code print?<br><pre>printf(\"%c\", 65);</pre>",
+    opts: [
+      "65",
+      "A",
+      "a",
+      "Error"
+    ],
+    ans: 1,
+    exp: "When an integer (65) is printed with %c format specifier, it prints the character whose ASCII value is 65, which is 'A'."
+  },
+  {
+    cat: "ASCII & Data Types",
+    q: "What is the correct format specifier for a <strong>double</strong> in printf()?",
+    opts: [
+      "%d",
+      "%f",
+      "%lf",
+      "%db"
+    ],
+    ans: 2,
+    exp: "The format specifier for double is %lf (long float). %f is used for float, %d for int, and %c for char."
+  },
+  // ── Lecture 3: Operators ──
+  {
+    cat: "Operators",
+    q: "What is the result of <code>10 % 3</code> in C?",
+    opts: [
+      "3",
+      "1",
+      "0",
+      "3.33"
+    ],
+    ans: 1,
+    exp: "The modulus operator (%) returns the remainder of division. 10 divided by 3 is 3 with remainder 1, so 10 % 3 = 1."
+  },
+  {
+    cat: "Operators",
+    q: "What is the output of this code?<br><pre>int x = 5;\nprintf(\"%d\", x++);</pre>",
+    opts: [
+      "6",
+      "5",
+      "4",
+      "Error"
+    ],
+    ans: 1,
+    exp: "x++ is post-increment. It uses the current value of x (5) FIRST in the expression, then increments it. So printf prints 5, and x becomes 6 afterward."
+  },
+  {
+    cat: "Operators",
+    q: "What is the output of this code?<br><pre>int x = 5;\nprintf(\"%d\", ++x);</pre>",
+    opts: [
+      "5",
+      "4",
+      "6",
+      "Error"
+    ],
+    ans: 2,
+    exp: "++x is pre-increment. It increments x FIRST (to 6), then uses it in the expression. So printf prints 6."
+  },
+  {
+    cat: "Operators",
+    q: "What does the logical AND operator (&&) return when both conditions are FALSE?",
+    opts: [
+      "1 (true)",
+      "0 (false)",
+      "-1",
+      "NULL"
+    ],
+    ans: 1,
+    exp: "Logical AND (&&) returns true (1) ONLY when BOTH operands are true. If either or both are false, the result is 0 (false)."
+  },
+  {
+    cat: "Operators",
+    q: "What is the result of <code>(5 > 3) || (10 < 2)</code>?",
+    opts: [
+      "0 (false)",
+      "1 (true)",
+      "Error",
+      "Undefined"
+    ],
+    ans: 1,
+    exp: "The OR (||) operator returns true if AT LEAST ONE operand is true. (5 > 3) is true, so the whole expression is true (1), regardless of the second condition."
+  },
+  {
+    cat: "Operators",
+    q: "What is the result of <code>!(5 > 3)</code>?",
+    opts: [
+      "1 (true)",
+      "0 (false)",
+      "5",
+      "3"
+    ],
+    ans: 1,
+    exp: "The NOT operator (!) negates the result. (5 > 3) is true (1), so !(5 > 3) = !1 = 0 (false)."
+  },
+  {
+    cat: "Operators",
+    q: "What is the output of this tricky expression?<br><pre>int a = 5, b = 2;\nfloat c = a / b;\nprintf(\"%.2f\", c);</pre>",
+    opts: [
+      "2.50",
+      "2.00",
+      "2.5",
+      "0.00"
+    ],
+    ans: 1,
+    exp: "Teacher's tip: a and b are both integers, so a/b performs INTEGER division = 2 (not 2.5). Storing 2 in a float gives 2.00. To get 2.50, you'd need (float)a/b."
+  },
+  // ── Lecture 4: Decision Control ──
+  {
+    cat: "Decision Control",
+    q: "In C, which keyword is used to start a conditional statement?",
+    opts: [
+      "when",
+      "if",
+      "check",
+      "condition"
+    ],
+    ans: 1,
+    exp: "The 'if' keyword is used to start a conditional statement in C. The condition is placed inside parentheses ()."
+  },
+  {
+    cat: "Decision Control",
+    q: "What is a <strong>nested if-else</strong>?",
+    opts: [
+      "Two if statements on the same line",
+      "An if statement inside another if or else block",
+      "An if statement without an else",
+      "Using multiple conditions with &&"
+    ],
+    ans: 1,
+    exp: "Nested if-else means an if-else statement is present inside the body of another 'if' or 'else'. This allows multi-level decision making."
+  },
+  {
+    cat: "Decision Control",
+    q: "What is the output of this code?<br><pre>int a = 5, b = 10;\nif (a > b)\n  printf(\"A\");\nelse\n  printf(\"B\");</pre>",
+    opts: [
+      "A",
+      "B",
+      "AB",
+      "Nothing"
+    ],
+    ans: 1,
+    exp: "Since a (5) is NOT greater than b (10), the if-condition is false, so the else block runs and prints 'B'."
+  },
+  {
+    cat: "Decision Control",
+    q: "Which operator returns true only when BOTH conditions are true?",
+    opts: [
+      "|| (OR)",
+      "! (NOT)",
+      "&& (AND)",
+      "== (equality)"
+    ],
+    ans: 2,
+    exp: "The logical AND operator (&&) returns true (1) ONLY when both conditions are true. If any condition is false, the result is false (0)."
+  },
+  // ── Lecture 5: Switch & Ternary ──
+  {
+    cat: "Switch Statement",
+    q: "What happens if a <code>break</code> statement is missing in a switch case?",
+    opts: [
+      "The program throws a compile error",
+      "Only the matched case runs",
+      "All cases after the matched one also execute (fall-through)",
+      "The switch exits immediately"
+    ],
+    ans: 2,
+    exp: "Without a break, switch 'falls through' — it keeps executing all subsequent cases after the matched one until it finds a break or reaches the end. This is called fall-through."
+  },
+  {
+    cat: "Switch Statement",
+    q: "The switch expression in C must be of which type?",
+    opts: [
+      "Float or double only",
+      "Integer or character type",
+      "String type",
+      "Any type"
+    ],
+    ans: 1,
+    exp: "Rule 1 of switch: The switch expression must be of an integer or character type. Floats, doubles, and strings are NOT allowed as switch expressions."
+  },
+  {
+    cat: "Switch Statement",
+    q: "What does the <code>default</code> case in a switch statement do?",
+    opts: [
+      "It is always executed first",
+      "It runs when none of the case values match the expression",
+      "It replaces the break statement",
+      "It is mandatory in every switch"
+    ],
+    ans: 1,
+    exp: "The 'default' case executes when none of the specified case values match the switch expression. It's like the 'else' in an if-else chain. It is optional, not mandatory."
+  },
+  {
+    cat: "Switch Statement",
+    q: "What is the output of this ternary expression?<br><pre>int age = 20;\nprintf(\"%s\", (age >= 18) ? \"Can Vote\" : \"Cannot Vote\");</pre>",
+    opts: [
+      "Cannot Vote",
+      "Can Vote",
+      "20",
+      "Error"
+    ],
+    ans: 1,
+    exp: "The ternary operator works like: condition ? value_if_true : value_if_false. Since age (20) >= 18 is true, it prints 'Can Vote'."
+  },
+  // ── Lecture 6: Loops ──
+  {
+    cat: "Loops",
+    q: "What is a key difference between a <strong>while</strong> loop and a <strong>do-while</strong> loop?",
+    opts: [
+      "While loop runs faster than do-while",
+      "do-while checks the condition at the end, so it always executes at least once",
+      "while loop executes at least twice",
+      "There is no difference between them"
+    ],
+    ans: 1,
+    exp: "In a while loop, the condition is checked BEFORE execution — if false initially, the body never runs. In do-while, the condition is checked AFTER execution, so the body always runs at least once."
+  },
+  {
+    cat: "Loops",
+    q: "Loops are also known as:",
+    opts: [
+      "Decision structures",
+      "Control structures",
+      "Input structures",
+      "Output structures"
+    ],
+    ans: 1,
+    exp: "Teacher's tip of the day: Loops are also called control structures (specifically repetition/iteration control structures)."
+  },
+  {
+    cat: "Loops",
+    q: "What is the output of this tricky code?<br><pre>#include &lt;stdio.h&gt;\nint main() {\n    int i;\n    for(i = 0; i &lt; 5; i++);\n    printf(\"%d\", i);\n    return 0;\n}</pre>",
+    opts: [
+      "0",
       "4",
       "5",
       "Infinite loop"
     ],
     ans: 2,
-    exp: "The semicolon (;) immediately after the for loop header creates an empty loop body. The loop runs until 'i' becomes 5, then terminates. The printf is executed once AFTER the loop finishes."
+    exp: "Tricky! Notice the semicolon after for(i=0; i<5; i++); — this means the for loop body is EMPTY. The loop still runs and increments i until i=5 (when condition fails). Then printf prints 5."
   },
   {
-    cat: "Increment Operators",
-    q: "Predict the output:<br><code>int x = 5;<br>printf(\"%d \", x++);<br>printf(\"%d\", x);</code>",
+    cat: "Loops",
+    q: "What is the syntax error in a do-while loop that beginners commonly make?",
     opts: [
-      "5 5",
-      "5 6",
-      "6 6",
-      "6 5"
+      "Forgetting the opening brace {",
+      "Forgetting the semicolon after while(condition)",
+      "Writing 'do' in lowercase",
+      "Using == instead of ="
     ],
     ans: 1,
-    exp: "x++ is a post-increment operator. It returns the current value (5) to the printf first, and then increments x to 6."
+    exp: "A common error is forgetting the trailing semicolon at the end of do-while: do { ... } while(condition); — the semicolon after the closing parenthesis is REQUIRED."
   },
   {
-    cat: "Increment Operators",
-    q: "Predict the output:<br><code>int x = 5;<br>printf(\"%d \", ++x);<br>printf(\"%d\", x);</code>",
+    cat: "Loops",
+    q: "What will be printed by this code?<br><pre>int i = 10;\nwhile (i &lt; 5) {\n    printf(\"%d\", i);\n    i++;\n}</pre>",
     opts: [
-      "5 6",
-      "6 5",
-      "6 6",
-      "5 5"
+      "10 11 12 13 14",
+      "5 6 7 8 9",
+      "Nothing (no output)",
+      "Infinite loop"
     ],
     ans: 2,
-    exp: "++x is a pre-increment operator. It increments x to 6 first, and then returns that new value to the printf."
+    exp: "The while loop checks the condition BEFORE executing. Since i=10 is NOT less than 5, the condition is false from the start, so the loop body never executes — no output."
   },
   {
-    cat: "ASCII Logic",
-    q: "What will be the output of the following code?<br><code>char alpha = 'A';<br>printf(\"%d\", alpha);</code>",
+    cat: "Loops",
+    q: "In a <code>for</code> loop <code>for(i=0; i&lt;5; i++)</code>, which part is the <strong>update expression</strong>?",
     opts: [
-      "A",
-      "65",
-      "97",
-      "Error"
-    ],
-    ans: 1,
-    exp: "Characters are stored as integers (ASCII codes). Using the %d format specifier tells the compiler to print the decimal ASCII value of 'A', which is 65."
-  },
-  {
-    cat: "ASCII Logic",
-    q: "What is the range of ASCII values for <strong>lowercase</strong> English alphabets (a-z)?",
-    opts: [
-      "65 to 90",
-      "48 to 57",
-      "97 to 122",
-      "0 to 255"
+      "i=0",
+      "i<5",
+      "i++",
+      "for"
     ],
     ans: 2,
-    exp: "Lowercase letters start at 'a' (97) and end at 'z' (122), while uppercase letters (A-Z) are 65 to 90."
+    exp: "A for loop has three parts: initialization (i=0), condition (i<5), and update/increment (i++). The update expression runs after each iteration."
   },
+  // ── Lecture 7: Nested Loops ──
   {
-    cat: "Data Types",
-    q: "Which format specifier is specifically used for a <strong>double</strong> precision floating-point number?",
+    cat: "Nested Loops",
+    q: "If an outer loop runs <strong>4 times</strong> and an inner loop runs <strong>3 times</strong>, how many total times does the inner loop body execute?",
     opts: [
-      "%f",
-      "%d",
-      "%lf",
-      "%c"
-    ],
-    ans: 2,
-    exp: "The specifier %lf (long float) is the standard way to handle 'double' variables in C."
-  },
-  {
-    cat: "Integer Division",
-    q: "What is the output of this code?<br><code>float c = 5 / 2;<br>printf(\"%.1f\", c);</code>",
-    opts: [
-      "2.5",
-      "2.0",
-      "3.0",
-      "0.0"
-    ],
-    ans: 1,
-    exp: "In C, (int / int) results in an integer. 5 / 2 is 2. When stored in a float, it becomes 2.0. To get 2.5, you would need to write 5.0 / 2."
-  },
-  {
-    cat: "Logic & Conditionals",
-    q: "What is printed?<br><code>int x = 10, y = 20;<br>if (x = 5)<br>  printf(\"True\");<br>else<br>  printf(\"False\");</code>",
-    opts: [
-      "True",
-      "False",
-      "10",
-      "Error"
-    ],
-    ans: 0,
-    exp: "This is a common trap! Inside the 'if', we used '=' (assignment) instead of '==' (comparison). 'x = 5' assigns 5 to x, and since 5 is non-zero, the condition is treated as True."
-  },
-  {
-    cat: "Switch & Fall-through",
-    q: "What is the output?<br><code>int i = 2;<br>switch(i) {<br>  case 1: printf(\"1\");<br>  case 2: printf(\"2\");<br>  case 3: printf(\"3\");<br>  default: printf(\"D\");<br>}</code>",
-    opts: [
-      "2",
-      "23D",
-      "23",
-      "D"
-    ],
-    ans: 1,
-    exp: "Because there are no 'break' statements, the program executes case 2 and then 'falls through' to all subsequent cases and the default."
-  },
-  {
-    cat: "Logical Operators",
-    q: "What is the result of <code>(5 > 3 && 2 > 10) || (1 == 1)</code>?",
-    opts: [
-      "0 (False)",
-      "1 (True)",
-      "Error",
-      "10"
-    ],
-    ans: 1,
-    exp: "(True && False) is False. But (False || True) is True. In C, True is represented by 1."
-  },
-  {
-    cat: "Problem Solving",
-    q: "According to the lectures, what is the core reason for identifying the problem <strong>before</strong> generating solutions?",
-    opts: [
-      "To save time on coding",
-      "To ensure we solve the real issue rather than just symptoms",
-      "Because computers are intelligent enough to fix it later",
-      "To write the algorithm in a specific language"
-    ],
-    ans: 1,
-    exp: "Identifying the root cause ensures that the solution actually addresses the problem instead of just treating superficial symptoms."
-  },
-  {
-    cat: "Flowcharts",
-    q: "Which symbol would you use to represent <code>printf(\"Hello World\");</code> in a flowchart?",
-    opts: [
-      "Oval",
-      "Rectangle",
-      "Parallelogram",
-      "Diamond"
-    ],
-    ans: 2,
-    exp: "Parallelograms are used for Input and Output operations."
-  },
-  {
-    cat: "Flowcharts",
-    q: "What is the purpose of the <strong>Rectangle</strong> symbol in a flowchart?",
-    opts: [
-      "Start/End",
-      "Decision making",
-      "Processing (Calculations/Assignments)",
-      "Input data"
-    ],
-    ans: 2,
-    exp: "Rectangles represent processes like calculations (e.g., area = pi * r * r) or assignments."
-  },
-  {
-    cat: "C Fundamentals",
-    q: "Which part of the C program is responsible for importing standard library functions like <code>scanf</code>?",
-    opts: [
-      "Main function",
-      "Preprocessor Directives",
-      "Variables",
-      "Comments"
-    ],
-    ans: 1,
-    exp: "Preprocessor directives like #include <stdio.h> import standard library functions into the program."
-  },
-  {
-    cat: "Variables",
-    q: "Which of the following is an <strong>invalid</strong> variable name in C?",
-    opts: [
-      "_myVar",
-      "var_2",
-      "2ndVar",
-      "myVar2"
-    ],
-    ans: 2,
-    exp: "Variable names cannot start with a digit (0-9)."
-  },
-  {
-    cat: "Bitwise Operators",
-    q: "What is the result of the bitwise operation <code>5 & 3</code>?",
-    opts: [
-      "1",
-      "7",
-      "8",
-      "2"
-    ],
-    ans: 0,
-    exp: "5 is 0101 in binary, 3 is 0011. A bitwise AND (&) results in 0001, which is 1 in decimal."
-  },
-  {
-    cat: "Bitwise Operators",
-    q: "Which operator would you use to <strong>flip</strong> all the bits of an integer?",
-    opts: [
-      "!",
-      "~",
-      "^",
-      "|"
-    ],
-    ans: 1,
-    exp: "The tilde (~) is the bitwise NOT (complement) operator that flips 0s to 1s and vice versa."
-  },
-  {
-    cat: "Modulus Operator",
-    q: "What is the output of <code>printf(\"%d\", -10 % 3);</code>?",
-    opts: [
-      "1",
-      "-1",
+      "4",
       "3",
-      "0"
+      "7",
+      "12"
     ],
-    ans: 1,
-    exp: "In C, the sign of the result of the modulus operator matches the sign of the dividend (the first number)."
-  },
-  {
-    cat: "Teacher Tips",
-    q: "If you execute <code>printf(\"%c\", 66);</code>, what is the output?",
-    opts: [
-      "66",
-      "A",
-      "B",
-      "Error"
-    ],
-    ans: 2,
-    exp: "Using %c with 66 prints the character associated with that ASCII code. Since 65 is 'A', 66 is 'B'."
-  },
-  {
-    cat: "Control Structures",
-    q: "Which loop is best suited when the number of iterations is <strong>unknown</strong> but the condition must be checked first?",
-    opts: [
-      "for loop",
-      "do-while loop",
-      "while loop",
-      "switch case"
-    ],
-    ans: 2,
-    exp: "The while loop checks the condition before the first iteration, making it ideal for unknown iteration counts where the loop might not run at all."
+    ans: 3,
+    exp: "Total executions of inner loop = outer iterations × inner iterations = 4 × 3 = 12. The inner loop completes all its iterations for EACH iteration of the outer loop."
   },
   {
     cat: "Nested Loops",
-    q: "Predict the output:<br><code>for(int i=1; i<=2; i++)<br>  for(int j=1; j<=2; j++)<br>    printf(\"*\");</code>",
+    q: "What is a nested loop?",
     opts: [
-      "**",
-      "****",
-      "***",
-      "*"
+      "Two loops running at the same time in parallel",
+      "A loop that has another loop inside it",
+      "A loop that never terminates",
+      "A loop with no condition"
     ],
     ans: 1,
-    exp: "The outer loop runs twice. For each outer iteration, the inner loop runs twice. Total iterations = 2 * 2 = 4."
+    exp: "A nested loop is a loop inside another loop. The outer loop controls how many times the inner loop block repeats entirely."
+  },
+  // ── Mixed / Tricky Output Prediction ──
+  {
+    cat: "C Output Prediction",
+    q: "What is the output?<br><pre>#include &lt;stdio.h&gt;\nint main() {\n    int x = 5, y = 2;\n    printf(\"%d\", x / y);\n    return 0;\n}</pre>",
+    opts: [
+      "2.5",
+      "2",
+      "3",
+      "2.0"
+    ],
+    ans: 1,
+    exp: "Both x and y are integers, so / performs INTEGER division. 5/2 = 2 (remainder is discarded). The result is 2, not 2.5."
   },
   {
-    cat: "Do-While Loop",
-    q: "What is the output?<br><code>int i = 10;<br>do {<br>  printf(\"%d\", i);<br>  i++;<br>} while(i < 5);</code>",
+    cat: "C Output Prediction",
+    q: "What is the output?<br><pre>#include &lt;stdio.h&gt;\nint main() {\n    int i = 1;\n    do {\n        printf(\"%d \", i);\n        i++;\n    } while (i &lt; 1);\n    return 0;\n}</pre>",
     opts: [
       "Nothing",
-      "10",
-      "10 11",
-      "Infinite loop"
-    ],
-    ans: 1,
-    exp: "A do-while loop executes the body first and then checks the condition. Since 10 is printed before checking if 11 < 5, it prints 10 once."
-  },
-  {
-    cat: "Logic & Comparisons",
-    q: "What does <code>5 != 5</code> evaluate to in C?",
-    opts: [
       "1",
-      "0",
-      "True",
-      "Error"
+      "1 2 3...(infinite)",
+      "0"
     ],
     ans: 1,
-    exp: "5 is equal to 5, so the inequality '5 is not equal to 5' is false. In C, false is represented as 0."
+    exp: "do-while always executes the body at least once. So it prints '1', then checks if i < 1 (i is now 2), which is false, so it stops. Output: 1"
   },
   {
-    cat: "Teacher Tips",
-    q: "What would the following print?<br><code>char val = 90;<br>printf(\"%c\", val);</code>",
+    cat: "C Output Prediction",
+    q: "What is the output?<br><pre>#include &lt;stdio.h&gt;\nint main() {\n    int x = 3;\n    switch(x) {\n        case 1: printf(\"One\");\n        case 2: printf(\"Two\");\n        case 3: printf(\"Three\");\n        case 4: printf(\"Four\");\n        default: printf(\"Done\");\n    }\n    return 0;\n}</pre>",
     opts: [
-      "A",
-      "Y",
-      "Z",
-      "90"
+      "Three",
+      "Three Four Done",
+      "ThreeFourDone",
+      "Done"
     ],
     ans: 2,
-    exp: "ASCII for 'A' is 65. Adding 25 (for the 26 letters) brings us to 90, which is 'Z'."
+    exp: "There are no break statements! So after matching case 3, the code falls through and executes case 4 and default as well. Output: ThreeFourDone (with no spaces since printf doesn't add them)."
   },
   {
-    cat: "Operator Precedence",
-    q: "What is the output of <code>printf(\"%d\", 2 + 3 * 4);</code>?",
+    cat: "General C",
+    q: "HTML is classified as which type of language?",
     opts: [
-      "20",
-      "14",
-      "18",
-      "9"
+      "Programming language",
+      "Markup language",
+      "Assembly language",
+      "Scripting language"
     ],
     ans: 1,
-    exp: "Multiplication (*) has higher precedence than addition (+), so 3*4=12 is calculated first, then 2+12=14."
-  },
-  {
-    cat: "Ternary Operator",
-    q: "Convert this to ternary: <code>if(a>b) x=a; else x=b;</code>",
-    opts: [
-      "x = (a>b) : a ? b;",
-      "x = (a>b) ? a : b;",
-      "x = (a>b) ? b : a;",
-      "x = if(a>b) ? a : b;"
-    ],
-    ans: 1,
-    exp: "The syntax for ternary is (condition) ? value_if_true : value_if_false."
-  },
-  {
-    cat: "Nested If",
-    q: "What is the output?<br><code>int a=5, b=10;<br>if(a<10)<br>  if(b<5) printf(\"One\");<br>  else printf(\"Two\");</code>",
-    opts: [
-      "One",
-      "Two",
-      "OneTwo",
-      "Nothing"
-    ],
-    ans: 1,
-    exp: "a<10 is true, so it enters the first if. Inside, b<5 is false, so it executes the 'else' associated with the inner if, printing 'Two'."
-  },
-  {
-    cat: "ASCII Logic",
-    q: "A character variable is essentially a ______ that stores ASCII values.",
-    opts: [
-      "Small integer",
-      "Floating point",
-      "String",
-      "Boolean"
-    ],
-    ans: 0,
-    exp: "In C, a char is an 8-bit integer that stores the numeric ASCII code of a symbol."
-  },
-  {
-    cat: "Loop Syntax",
-    q: "Which of the following for-loop headers is <strong>infinite</strong>?",
-    opts: [
-      "for(int i=0; i<10; i++)",
-      "for( ; ; )",
-      "for(int i=10; i>0; i--)",
-      "for(int i=0; i<10; )"
-    ],
-    ans: 1,
-    exp: "A for loop with empty condition/expressions 'for( ; ; )' will run forever unless a break statement is used inside."
-  },
-  {
-    cat: "Input Logic",
-    q: "What is missing in this input statement?<br><code>int num;<br>scanf(\"%d\", num);</code>",
-    opts: [
-      "A semicolon",
-      "The address-of operator (&)",
-      "Quotes around num",
-      "The format specifier"
-    ],
-    ans: 1,
-    exp: "The scanf function requires the address of the variable to store the value, so it should be &num."
-  },
-  {
-    cat: "Escape Sequences",
-    q: "Which escape sequence represents a <strong>horizontal tab</strong>?",
-    opts: [
-      "\\n",
-      "\\t",
-      "\\b",
-      "\\r"
-    ],
-    ans: 1,
-    exp: "\\t inserts a tab space, while \\n is for a new line."
-  },
-  {
-    cat: "Bitwise Operators",
-    q: "What is the result of <code>5 ^ 5</code> (XOR)?",
-    opts: [
-      "5",
-      "10",
-      "0",
-      "1"
-    ],
-    ans: 2,
-    exp: "XORing a number with itself always results in 0 because all identical bits cancel out."
-  },
-  {
-    cat: "Switch Logic",
-    q: "Is it legal to use <code>switch(10.5)</code> in C?",
-    opts: [
-      "Yes",
-      "No, switch requires an integer or char",
-      "Yes, if it's in a default case",
-      "Only in newer versions of C"
-    ],
-    ans: 1,
-    exp: "Switch expressions must evaluate to an integral type (int or char). Floating point values (float/double) are not allowed."
-  },
-  {
-    cat: "Data Types",
-    q: "If <code>int x = 32767;</code> (max for 16-bit) and you do <code>x = x + 1;</code>, what typically happens?",
-    opts: [
-      "It becomes 32768",
-      "It overflows and becomes -32768",
-      "The computer crashes",
-      "It stays 32767"
-    ],
-    ans: 1,
-    exp: "This is integer overflow. When you exceed the maximum positive value, it wraps around to the minimum negative value."
-  },
-  {
-    cat: "Logical Not",
-    q: "What is the output of <code>printf(\"%d\", !0);</code>?",
-    opts: [
-      "0",
-      "1",
-      "Error",
-      "False"
-    ],
-    "ans": 1,
-    "exp": "The logical NOT (!) operator inverts truth. Since 0 is false, !0 is true (1)."
-  },
-  {
-    cat: "Algorithm Design",
-    q: "Which of the following is NOT a characteristic of a good algorithm?",
-    opts: [
-      "Unambiguous steps",
-      "Finiteness",
-      "Language-specific syntax",
-      "Input and Output"
-    ],
-    ans: 2,
-    exp: "Algorithms should be language-independent so they can be implemented in any programming language."
-  },
-  {
-    cat: "Loops & Semicolons",
-    q: "What is the output?<br><code>int x = 0;<br>while(x < 3);<br>{<br>  x++;<br>}<br>printf(\"%d\", x);</code>",
-    opts: [
-      "3",
-      "0",
-      "Infinite loop",
-      "1"
-    ],
-    ans: 2,
-    exp: "The semicolon after while(x < 3); makes it an empty loop that checks if 0 < 3. This condition remains true forever, resulting in an infinite loop."
-  },
-  {
-    cat: "C Components",
-    q: "What symbol indicates that a statement is a preprocessor directive?",
-    opts: [
-      "&",
-      "$",
-      "#",
-      "%"
-    ],
-    ans: 2,
-    exp: "All preprocessor directives in C (like #include and #define) begin with the '#' symbol."
-  },
-  {
-    cat: "Memory",
-    q: "What is the result of using a variable that has been declared but <strong>never initialized</strong>?",
-    opts: [
-      "It will always be 0",
-      "It will contain a garbage value",
-      "The program will not compile",
-      "It will be NULL"
-    ],
-    ans: 1,
-    exp: "Uninitialized local variables contain 'garbage values,' which are whatever bits were left in that memory location previously."
-  },
-  {
-    cat: "Problem Solving",
-    q: "In the context of the lectures, 'Algorithm' is to 'Flowchart' as:",
-    opts: [
-      "Text is to Picture",
-      "Code is to Hardware",
-      "Input is to Output",
-      "Math is to Logic"
-    ],
-    ans: 0,
-    exp: "An algorithm is a step-by-step text description, while a flowchart is a graphical/visual representation of those same steps."
+    exp: "Teacher's tip: HTML (HyperText Markup Language) is a MARKUP language, NOT a programming language, because it describes structure rather than defining logic."
   }
 ];
 console.log(`Questions: ${questions.length}`);
