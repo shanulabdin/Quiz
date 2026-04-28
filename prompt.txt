@@ -1,0 +1,63 @@
+the files i shared are all the lecture for programming fundamentals class, i want you to create me 40 mcqs from all these files, also include tips from teacher that i added at the end of this text, create the mcqs in this format, give me array of objects like this:
+"
+const questions = [
+  {
+    cat: "Category of the MCQ (e.g., Tenses, Physics, Math, Biology)",
+    q: "Write the question here (you can use HTML tags like <strong> if needed)",
+    opts: [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    ans: 0, // Index of correct answer (0 = A, 1 = B, 2 = C, 3 = D)
+    exp: "Explain WHY this answer is correct. Keep it simple and clear."
+  }
+];
+"
+add more coding problems where you give code and we predict output, give tricky questions like this one the teacher gave us:
+what is the output: #include <stdio.h>
+int main() {
+    int i;
+    for(i = 0; i < 5; i++);
+    printf("%d", i);
+    return 0;
+}
+additional tips and instructions from teacher:
+ASCII Codes are those codes which are given to alphabets, characters and symbols. These are numbers assigned to alphabets since alphabets cannot be stored in the computer right so numbers are asaigned to them and then they get converted to binary numbers. Like for capital letters ASCII codes from A to Z are from 65 to 90 and for small letters i.e from a to z they are from 97 to 122.
+.
+Try this code:
+char alpha = 'A' ;
+printf("%d", alpha);
+and see what happens
+.
+Similarly, Try this code:
+printf("%c", 65);
+and see what happens
+.
+int x=5;
+printf("%d",×++);
+int x=5;
+printf("%d",++x);
+Double numbers?
+Format specifiers associated with double numbers
+ASCII Codes explore
+.
+tips by teacher:
+tip of the day:Technically, this is correct. HTML (HyperText Markup Language) is classified as a markup language, not a programming language, because it describes structure rather than defining logic.
+Tip: if a variable is not initialized before being used, it might have a garbage value by default
+Explore what the format specifier for a double is?
+Explore what are ASCII values and how they can be printed
+Explore nested ifs also
+Tip: An expression in c is like: 4*6+7
+         6*8+9
+        a +(b/7)
+Tip of the day: look at the format specifiers for int, float, char and double
+tip: explore this program: #include <stdio.h>
+int main() {
+    int a = 5, b = 2;
+    float c = a / b;
+    printf("%.2f", c);
+    return 0;
+}
+Tip of the day: Loops are also called control structure
