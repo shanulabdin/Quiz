@@ -2,410 +2,508 @@ const questions = [
   // ── LECTURE 1: Problem Solving & Algorithms ──────────────────────────────
   {
     cat: "Problem Solving",
-    q: "What is the FIRST and most important step in the problem-solving process?",
+    q: "Which step of the problem-solving process involves diagnosing the situation and focusing on the real problem, not its symptoms?",
     opts: [
+      "Implement and follow up on the solution",
       "Generate alternative solutions",
-      "Define / Identify the problem",
-      "Implement the solution",
-      "Evaluate alternatives"
+      "Evaluate and select an alternative",
+      "Define / Identify the problem"
     ],
-    ans: 1,
-    exp: "Defining/identifying the problem is described as the most important and difficult step. A well-described problem helps everyone understand what needs to be solved."
+    ans: 3,
+    exp: "Step 1 — Define/Identify the problem — involves diagnosing the situation to focus on the real problem, not just its symptoms. It is described as the most important and difficult step."
   },
   {
     cat: "Problem Solving",
-    q: "How many basic steps are involved in the problem-solving process?",
-    opts: ["3", "5", "4", "6"],
-    ans: 2,
-    exp: "There are four basic steps: (1) Define the problem, (2) Generate alternative solutions, (3) Evaluate and select an alternative, (4) Implement and follow up on the solution."
-  },
-  {
-    cat: "Problem Solving",
-    q: "Which of the following is a quality of a good algorithm?",
+    q: "A common mistake during the 'Evaluate and select an alternative' step is:",
     opts: [
-      "It must be written in a specific programming language",
-      "Each step should be clear and unambiguous",
-      "It should contain as many steps as possible",
-      "It must include computer code"
+      "Choosing the best solution after evaluating all alternatives",
+      "Selecting the first acceptable solution before all alternatives are considered",
+      "Generating too many alternative solutions",
+      "Implementing the solution before defining the problem"
     ],
     ans: 1,
-    exp: "A good algorithm must have clear, unambiguous steps. It should NOT be tied to a specific programming language or include computer code."
+    exp: "The lecture warns that a common mistake is selecting the first acceptable solution even if it is not the best, without properly evaluating all alternatives."
+  },
+  {
+    cat: "Algorithms",
+    q: "Which of the following is TRUE about a good algorithm?",
+    opts: [
+      "It must be written in Python or C",
+      "It must include computer code so it can run",
+      "Steps can be vague as long as the output is correct",
+      "It should be written so it can be used in different programming languages"
+    ],
+    ans: 3,
+    exp: "A good algorithm should NOT include computer code and should be written in a language-independent way so it can be implemented in any programming language."
   },
   {
     cat: "Flowcharts",
-    q: "What shape is used as the Decision symbol in a flowchart?",
-    opts: ["Rectangle", "Oval/Rounded rectangle", "Diamond", "Parallelogram"],
+    q: "Which flowchart symbol represents a <strong>Process</strong> (e.g., a calculation step)?",
+    opts: [
+      "Diamond",
+      "Oval / Rounded rectangle",
+      "Rectangle",
+      "Parallelogram"
+    ],
     ans: 2,
-    exp: "The diamond shape represents a decision (yes/no or true/false branch) in a flowchart."
+    exp: "A rectangle is the Process symbol in flowcharts. The diamond is for decisions, the oval for start/end, and the parallelogram for input/output."
   },
   {
     cat: "Flowcharts",
-    q: "A flowchart originated from which field as a tool for representing algorithms?",
-    opts: ["Mathematics", "Computer Science", "Electrical Engineering", "Business Management"],
-    ans: 1,
-    exp: "Flowcharts originated from computer science as a tool for representing algorithms and programming logic."
+    q: "In the algorithm to find the area of a circle (area = pi * r * r), what is the FIRST step after Start?",
+    opts: [
+      "Print area",
+      "area ← pi * r * r",
+      "End",
+      "Input r and pi"
+    ],
+    ans: 3,
+    exp: "The algorithm is: Start → Input r, pi → area = pi*r*r → Print area → End. So Input r and pi is the first step after Start."
   },
 
   // ── LECTURE 2: Intro to C ─────────────────────────────────────────────────
   {
     cat: "C Basics",
-    q: "Which header file must you include to use <code>printf()</code> and <code>scanf()</code> in C?",
-    opts: ["&lt;stdlib.h&gt;", "&lt;math.h&gt;", "&lt;stdio.h&gt;", "&lt;string.h&gt;"],
-    ans: 2,
-    exp: "<stdio.h> (standard input/output) declares functions like printf() and scanf()."
-  },
-  {
-    cat: "C Basics",
-    q: "What does the <strong>#include</strong> directive do in a C program?",
+    q: "What does the <strong>&lt;stdio.h&gt;</strong> header file provide?",
     opts: [
-      "Declares a variable",
-      "Defines the main function",
-      "Requests the compiler to include a header file",
-      "Starts a loop"
+      "Mathematical functions like sqrt() and pow()",
+      "Memory allocation functions",
+      "String manipulation functions",
+      "Standard input and output functions like printf() and scanf()"
     ],
-    ans: 2,
-    exp: "#include is a preprocessor directive that tells the compiler to include the contents of the specified header file before compilation."
-  },
-  {
-    cat: "C Basics",
-    q: "Every C program must have which function as its entry point?",
-    opts: ["start()", "begin()", "run()", "main()"],
     ans: 3,
-    exp: "Every C program must contain a main() function. Program execution always begins from main()."
+    exp: "<stdio.h> stands for standard input/output. It provides functions like printf() for output and scanf() for input."
   },
   {
     cat: "C Basics",
-    q: "Which format specifier is used to print an <strong>integer</strong> with printf()?",
-    opts: ["%f", "%c", "%d", "%s"],
-    ans: 2,
-    exp: "%d is the format specifier for integers. %f is for float, %c for char, and %s for strings."
-  },
-  {
-    cat: "C Basics",
-    q: "What is the correct syntax to declare an integer variable called <code>num</code> and assign 11 to it?",
+    q: "All preprocessor directives in C begin with which symbol?",
     opts: [
-      "int = num 11;",
-      "num int = 11;",
-      "int num = 11;",
-      "integer num = 11;"
-    ],
-    ans: 2,
-    exp: "The correct syntax is: type variableName = value; → int num = 11;"
-  },
-  {
-    cat: "C Basics",
-    q: "What symbol does the <code>scanf()</code> function use before a variable name to get its memory address?",
-    opts: ["*", "#", "&", "@"],
-    ans: 2,
-    exp: "The ampersand & (reference/address-of operator) is used before variable names in scanf() to pass the memory address where the input should be stored."
-  },
-  {
-    cat: "C Basics",
-    q: "Which escape sequence is used to print a <strong>newline</strong> in C?",
-    opts: ["\\t", "\\r", "\\n", "\\b"],
-    ans: 2,
-    exp: "\\n is the newline escape sequence. \\t is tab, \\r is carriage return, \\b is backspace."
-  },
-  {
-    cat: "C Basics",
-    q: "According to teacher's tip: if a variable is declared but NOT initialized before use, what value might it hold?",
-    opts: ["0", "NULL", "Garbage value", "-1"],
-    ans: 2,
-    exp: "Teacher's tip: An uninitialized variable may hold a garbage value — whatever random data happens to be at that memory address."
-  },
-  {
-    cat: "C Basics",
-    q: "Teacher's tip: what will the output of this code be?<br><code>int a = 5, b = 2;<br>float c = a / b;<br>printf(\"%.2f\", c);</code>",
-    opts: ["2.50", "2.00", "2.5", "Error"],
-    ans: 1,
-    exp: "Since both a and b are integers, a/b performs integer division = 2, then 2 is stored in float c as 2.00. The result is 2.00, not 2.50. This is a classic integer division trap!"
-  },
-  {
-    cat: "C Basics",
-    q: "HTML is classified as a markup language and NOT a programming language because it:",
-    opts: [
-      "Cannot run in browsers",
-      "Describes structure rather than defining logic",
-      "Does not use tags",
-      "Was invented before C"
+      "@ (at sign)",
+      "# (hash)",
+      "$ (dollar sign)",
+      "& (ampersand)"
     ],
     ans: 1,
-    exp: "Teacher's tip of the day: HTML (HyperText Markup Language) describes structure rather than defining logic, which is why it is a markup language, not a programming language."
+    exp: "All preprocessor directives begin with a '#' (hash) symbol. Examples: #include, #define."
+  },
+  {
+    cat: "C Basics",
+    q: "Which format specifier is used to print a <strong>float</strong> value with printf()?",
+    opts: [
+      "%f",
+      "%d",
+      "%c",
+      "%s"
+    ],
+    ans: 0,
+    exp: "%f is the format specifier for float. %d is for int, %c for char, %s for strings."
+  },
+  {
+    cat: "C Basics",
+    q: "What is a variable in C?",
+    opts: [
+      "A fixed value that cannot change during program execution",
+      "A function that stores instructions",
+      "A named memory location used to store a value",
+      "A type of loop in C"
+    ],
+    ans: 2,
+    exp: "A variable is a named memory location on which a value is stored and used during the program. Its value can change during execution."
+  },
+  {
+    cat: "C Basics",
+    q: "Teacher's tip: What value might an uninitialized variable hold in C?",
+    opts: [
+      "Always 0",
+      "Always -1",
+      "Always NULL",
+      "A garbage value (random leftover data from memory)"
+    ],
+    ans: 3,
+    exp: "Teacher's tip: If a variable is not initialized before being used, it might hold a garbage value — whatever random data was previously stored at that memory location."
+  },
+  {
+    cat: "C Basics",
+    q: "What does the escape sequence <strong>\\t</strong> do in a printf() string?",
+    opts: [
+      "Inserts a tab",
+      "Terminates the program",
+      "Prints a newline",
+      "Prints a backslash"
+    ],
+    ans: 0,
+    exp: "\\t inserts a horizontal tab. \\n is newline, \\\\ is a literal backslash."
+  },
+  {
+    cat: "C Basics",
+    q: "In the scanf() function, what does the <strong>&</strong> before a variable name represent?",
+    opts: [
+      "Logical AND operation",
+      "Bitwise AND operation",
+      "The memory address of the variable",
+      "A pointer to a function"
+    ],
+    ans: 2,
+    exp: "The & (address-of operator) gives the memory address of the variable, which scanf() needs to know where to store the input value."
+  },
+  {
+    cat: "C Basics",
+    q: "Teacher's tip: What will this code output?<br><code>int a=5, b=2; float c = a/b; printf(\"%.2f\", c);</code>",
+    opts: [
+      "2.00",
+      "2.50",
+      "2.5",
+      "Compile error"
+    ],
+    ans: 0,
+    exp: "Since a and b are both integers, a/b performs integer division = 2. The integer 2 is then stored in float c as 2.00. This is the classic integer division trap the teacher highlighted!"
   },
 
   // ── LECTURE 3: Operators ──────────────────────────────────────────────────
   {
     cat: "Operators in C",
-    q: "What is an <strong>operand</strong> in a C expression?",
+    q: "What does the modulus operator <strong>%</strong> return?",
     opts: [
-      "A symbol that decides which operation to perform",
-      "An entity on which an operation is performed",
-      "A loop control variable",
-      "A function return value"
+      "The quotient of the division",
+      "The average of two numbers",
+      "The absolute difference of two numbers",
+      "The remainder after dividing two operands"
     ],
-    ans: 1,
-    exp: "An operand is the entity (number, constant, variable) on which an operation is performed. An operator (like +) decides which operation to apply."
+    ans: 3,
+    exp: "The modulus operator returns the remainder of the division. For example, 10 % 3 = 1 (because 10 = 3×3 + 1)."
   },
   {
     cat: "Operators in C",
-    q: "What is the result of <code>10 % 3</code> in C?",
-    opts: ["3", "1", "0", "3.33"],
-    ans: 1,
-    exp: "The modulus operator (%) returns the remainder of division. 10 divided by 3 = 3 remainder 1, so 10 % 3 = 1."
-  },
-  {
-    cat: "Operators in C",
-    q: "Which operator checks if two values are <strong>equal</strong> in C?",
-    opts: ["=", "===", "==", "!="],
-    ans: 2,
-    exp: "== (two keystrokes) is the equality operator. A single = is assignment. != checks inequality. === does not exist in C."
-  },
-  {
-    cat: "Operators in C",
-    q: "What does the Logical AND operator (<strong>&&</strong>) return?",
+    q: "What is the result of <code>5 | 3</code> (Bitwise OR)?",
     opts: [
-      "true if at least one operand is true",
-      "true only if both operands are true",
-      "true only if both operands are false",
-      "the bitwise AND of both operands"
+      "1",
+      "6",
+      "7",
+      "8"
     ],
-    ans: 1,
-    exp: "&& returns true (1) only when BOTH operands are true. If either is false, the result is false."
-  },
-  {
-    cat: "Operators in C",
-    q: "What is the result of the expression: <code>(5 &gt; 3) && (3 &lt; 5)</code>?",
-    opts: ["0 (false)", "1 (true)", "2", "Undefined"],
-    ans: 1,
-    exp: "Both conditions are true: 5>3 is true AND 3<5 is true. Since both are true, && returns 1 (true)."
-  },
-  {
-    cat: "Operators in C",
-    q: "What is the result of <code>5 & 3</code> (Bitwise AND) in binary?",
-    opts: ["7", "6", "1", "0"],
     ans: 2,
-    exp: "5 in binary = 0101, 3 in binary = 0011. Bitwise AND: 0101 & 0011 = 0001 = 1."
+    exp: "5 in binary = 0101, 3 in binary = 0011. Bitwise OR: 0101 | 0011 = 0111 = 7."
   },
   {
     cat: "Operators in C",
-    q: "Which header file is needed to use mathematical functions like sqrt() and pow() in C?",
-    opts: ["&lt;stdlib.h&gt;", "&lt;stdio.h&gt;", "&lt;math.h&gt;", "&lt;cmath.h&gt;"],
-    ans: 2,
-    exp: "<math.h> provides access to various mathematical functions such as sqrt(), pow(), sin(), cos(), etc."
-  },
-  {
-    cat: "Operators in C",
-    q: "What is the C expression for: <strong>2 × (salary + bonus)</strong>?",
+    q: "What is the result of <code>5 ^ 3</code> (Bitwise XOR)?",
     opts: [
-      "2 * salary + bonus",
-      "2 * (salary + bonus)",
-      "(2 * salary) + bonus",
-      "2 + salary * bonus"
+      "2",
+      "7",
+      "1",
+      "6"
     ],
-    ans: 1,
-    exp: "To multiply the entire sum of salary and bonus by 2, parentheses must be used: 2 * (salary + bonus)."
+    ans: 3,
+    exp: "5 in binary = 0101, 3 in binary = 0011. XOR gives 1 where bits differ: 0101 ^ 0011 = 0110 = 6."
+  },
+  {
+    cat: "Operators in C",
+    q: "Which operator checks if two values are <strong>NOT equal</strong> in C?",
+    opts: [
+      "<>",
+      "!==",
+      "=/=",
+      "!="
+    ],
+    ans: 3,
+    exp: "!= is the inequality operator in C. It returns true (1) if the two operands are not equal, false (0) if they are equal."
+  },
+  {
+    cat: "Operators in C",
+    q: "What is the C expression for: <strong>(a − 7) / (t + 9v)</strong>?",
+    opts: [
+      "(a - 7) / (t + 9 * v)",
+      "a - 7 / t + 9 * v",
+      "(a - 7) / t + 9 * v",
+      "a - (7 / t) + 9v"
+    ],
+    ans: 0,
+    exp: "Both (a-7) and (t+9*v) must be grouped with parentheses, and multiplication must be explicit: (a - 7) / (t + 9 * v)."
+  },
+  {
+    cat: "Operators in C",
+    q: "The Logical NOT operator <strong>!</strong> applied to a true value gives:",
+    opts: [
+      "1 (true)",
+      "The same true value",
+      "An error",
+      "0 (false)"
+    ],
+    ans: 3,
+    exp: "The logical NOT (!) negates the value. !(true) = false = 0. For example: !(5 > 3) = !(true) = 0."
+  },
+  {
+    cat: "Operators in C",
+    q: "Teacher's tip: which of the following is a valid C expression?",
+    opts: [
+      "a +(b/7)",
+      "a ** b",
+      "$a + $b",
+      "a ^^ b"
+    ],
+    ans: 0,
+    exp: "Teacher's tip: C expressions use standard arithmetic operators. a+(b/7) is valid. ** is not a C operator (Python uses it for power), and $ is not valid in C variable names."
   },
 
-  // ── LECTURE 4: Decision Control Statements ────────────────────────────────
+  // ── LECTURE 4: Decision Control ───────────────────────────────────────────
   {
     cat: "Decision Control",
-    q: "In an if-else statement, where must the Boolean condition be placed?",
+    q: "In C, what is the result of evaluating <code>a == b</code> when a = 5 and b = 5?",
     opts: [
-      "Inside curly braces { }",
-      "Inside parentheses ( )",
-      "After a colon :",
-      "Inside square brackets [ ]"
+      "5",
+      "0 (false)",
+      "null",
+      "1 (true)"
     ],
-    ans: 1,
-    exp: "The condition in an if-else statement must always be inside parentheses ( )."
+    ans: 3,
+    exp: "The equality operator == returns 1 (true) when both operands are equal. Since a=5 and b=5 are equal, the result is 1."
   },
   {
     cat: "Decision Control",
-    q: "What is a <strong>nested if-else</strong>?",
+    q: "What will an if-else condition evaluate when the Boolean expression is FALSE?",
     opts: [
-      "An if statement with no else block",
-      "An if/else statement inside the body of another if or else",
-      "An if statement with multiple conditions",
-      "A switch statement inside an if block"
-    ],
-    ans: 1,
-    exp: "A nested if-else is when an if-else statement is present inside the body of another 'if' or 'else'."
-  },
-  {
-    cat: "Decision Control",
-    q: "The && (AND) operator returns TRUE only when:",
-    opts: [
-      "At least one condition is true",
-      "Both conditions are false",
-      "Both conditions are true",
-      "One condition is true and one is false"
+      "The if block executes",
+      "Both blocks execute",
+      "The else block executes",
+      "The program terminates"
     ],
     ans: 2,
-    exp: "The logical AND (&&) operator returns true ONLY if both operands/conditions are true. If either is false, the result is false."
+    exp: "When the Boolean expression in an if-else is false, the else block executes. The if block only runs when the condition is true."
   },
   {
     cat: "Decision Control",
-    q: "The || (OR) operator returns FALSE only when:",
+    q: "For the AND (&&) truth table: TRUE && FALSE = ?",
     opts: [
-      "Both conditions are true",
-      "Both conditions are false",
-      "At least one condition is true",
-      "One condition is true"
+      "TRUE",
+      "FALSE",
+      "Depends on context",
+      "Undefined"
     ],
     ans: 1,
-    exp: "The logical OR (||) operator returns false only when BOTH conditions are false. It returns true if at least one is true."
+    exp: "AND returns true only when BOTH operands are true. TRUE && FALSE = FALSE because one operand is false."
+  },
+  {
+    cat: "Decision Control",
+    q: "For the OR (||) truth table: FALSE || TRUE = ?",
+    opts: [
+      "FALSE",
+      "Undefined",
+      "TRUE",
+      "Depends on context"
+    ],
+    ans: 2,
+    exp: "OR returns true if at least one operand is true. FALSE || TRUE = TRUE because one of the operands is true."
   },
 
-  // ── LECTURE 5: Switch Statement ───────────────────────────────────────────
+  // ── LECTURE 5: Switch & Ternary ───────────────────────────────────────────
   {
     cat: "Switch Statement",
-    q: "Which data types can be used as the switch expression in C?",
+    q: "What is the correct syntax to start a switch statement in C?",
     opts: [
-      "Float and double only",
-      "String and boolean only",
-      "Integer or character type",
-      "Any data type"
+      "switch expression { }",
+      "switch [expression] { }",
+      "switch (expression) { }",
+      "switch <expression> { }"
     ],
     ans: 2,
-    exp: "Rule #1 of switch: The switch expression must be of an integer or character type. Float, double, and strings are NOT allowed."
+    exp: "The switch expression must be enclosed in parentheses: switch (expression) { ... }. This is the required syntax in C."
   },
   {
     cat: "Switch Statement",
-    q: "What happens if there is NO <strong>break</strong> statement at the end of a case in switch?",
+    q: "Which of the following switch expressions is <strong>NOT valid</strong> in C?",
     opts: [
-      "A compile error occurs",
-      "The program exits",
-      "Execution falls through to the next case(s)",
-      "Only the default block runs"
-    ],
-    ans: 2,
-    exp: "Without a break statement, execution 'falls through' — all subsequent cases after the matched one are also executed. This is known as fall-through behavior."
-  },
-  {
-    cat: "Switch Statement",
-    q: "What is the purpose of the <strong>default</strong> case in a switch statement?",
-    opts: [
-      "It is always executed first",
-      "It runs when no case matches the expression",
-      "It replaces the break statement",
-      "It stores the switch expression"
-    ],
-    ans: 1,
-    exp: "The default case executes when none of the case values match the switch expression. It acts like the final 'else' in an if-else chain."
-  },
-  {
-    cat: "Switch Statement",
-    q: "What does the <strong>ternary operator</strong> do in C?",
-    opts: [
-      "Performs three arithmetic operations",
-      "Runs one code when condition is true and another when false",
-      "Replaces the switch statement",
-      "Creates a three-way loop"
-    ],
-    ans: 1,
-    exp: "The ternary operator (condition ? expr1 : expr2) runs expr1 if the condition is true, and expr2 if it is false. It's a compact alternative to if-else."
-  },
-  {
-    cat: "Switch Statement",
-    q: "Which of the following is a valid switch expression in C?",
-    opts: [
-      "switch(3.14)",
-      "switch(\"hello\")",
       "switch(i + j * k)",
-      "switch(true)"
+      "switch('A')",
+      "switch(3.14)",
+      "switch(23 + 45 % 4 * k)"
     ],
     ans: 2,
-    exp: "An integer expression like i + j * k is valid in switch. Float (3.14) and strings (\"hello\") are NOT allowed as switch expressions."
+    exp: "switch(3.14) is invalid because the switch expression must be an integer or character type. Float and double values are not allowed."
+  },
+  {
+    cat: "Switch Statement",
+    q: "What is 'fall-through' in a switch statement?",
+    opts: [
+      "When the default case runs before other cases",
+      "When the switch expression is a float",
+      "When break is missing and subsequent cases also execute",
+      "When two cases have the same value"
+    ],
+    ans: 2,
+    exp: "Fall-through happens when there is no break statement in a case — execution continues into the next case(s) below the matched one."
+  },
+  {
+    cat: "Switch Statement",
+    q: "What is the ternary operator syntax for: if age >= 18 print 'Can Vote' else print 'Cannot Vote'?",
+    opts: [
+      "age >= 18 ? printf(\"Cannot Vote\") : printf(\"Can Vote\")",
+      "if(age >= 18) printf(\"Can Vote\") else printf(\"Cannot Vote\")",
+      "(age >= 18) ? printf(\"Can Vote\") : printf(\"Cannot Vote\")",
+      "age >= 18 then printf(\"Can Vote\") else printf(\"Cannot Vote\")"
+    ],
+    ans: 2,
+    exp: "Ternary syntax: (condition) ? execute_if_true : execute_if_false. So (age >= 18) ? printf(\"Can Vote\") : printf(\"Cannot Vote\")."
+  },
+  {
+    cat: "Switch Statement",
+    q: "The <strong>break</strong> statement in a switch case is:",
+    opts: [
+      "Mandatory or the program won't compile",
+      "Only required in the default case",
+      "Never needed because cases end automatically",
+      "Optional, but without it all following cases execute (fall-through)"
+    ],
+    ans: 3,
+    exp: "Break is optional in switch. If omitted, the program falls through and executes all subsequent cases until a break or the end of the switch is reached."
   },
 
   // ── LECTURE 6: Loops ──────────────────────────────────────────────────────
   {
     cat: "Loops",
-    q: "According to the teacher's tip, loops are also called:",
+    q: "Teacher's tip: Loops are also called:",
     opts: [
-      "Repetition blocks",
+      "Decision blocks",
+      "Execution sequences",
       "Control structures",
-      "Iteration expressions",
-      "Execution blocks"
+      "Iteration functions"
+    ],
+    ans: 2,
+    exp: "Teacher's tip of the day: Loops are also called control structures (along with if-else, switch, etc.)."
+  },
+  {
+    cat: "Loops",
+    q: "If the while loop condition is <strong>false</strong> from the very beginning, how many times does the loop body execute?",
+    opts: [
+      "Once",
+      "Infinitely",
+      "Twice",
+      "Zero times"
+    ],
+    ans: 3,
+    exp: "A key point of the while loop: if the condition is false initially, the loop body is SKIPPED entirely — it executes zero times."
+  },
+  {
+    cat: "Loops",
+    q: "A <strong>do-while</strong> loop guarantees the body executes at least once because:",
+    opts: [
+      "It checks the condition before the first iteration",
+      "It uses a different type of condition than while",
+      "It ignores the condition on the first run",
+      "The condition is checked at the END of each iteration"
+    ],
+    ans: 3,
+    exp: "In do-while, the condition is evaluated at the END. So the body always runs once before any check happens, even if the condition is false."
+  },
+  {
+    cat: "Loops",
+    q: "Which loop is best when you know the exact number of repetitions in advance?",
+    opts: [
+      "for loop",
+      "while loop",
+      "do-while loop",
+      "nested loop"
+    ],
+    ans: 0,
+    exp: "The for loop is designed for situations where you know in advance how many times you want to execute the loop body."
+  },
+  {
+    cat: "Loops",
+    q: "What common error is unique to the do-while loop syntax?",
+    opts: [
+      "Missing opening brace {",
+      "Forgetting the semicolon after while(condition);",
+      "Using a float in the condition",
+      "Declaring variables inside the loop"
     ],
     ans: 1,
-    exp: "Teacher's tip of the day: Loops are also called control structures."
-  },
-  {
-    cat: "Loops",
-    q: "In a <strong>while</strong> loop, when is the condition checked?",
-    opts: [
-      "At the end of each iteration",
-      "Only once before the loop starts",
-      "At the beginning (before each iteration)",
-      "After every two iterations"
-    ],
-    ans: 2,
-    exp: "The while loop checks its condition at the BEGINNING. If the condition is false initially, the loop body never executes."
-  },
-  {
-    cat: "Loops",
-    q: "What is the key difference between a <strong>do-while</strong> loop and a <strong>while</strong> loop?",
-    opts: [
-      "do-while uses a different condition syntax",
-      "do-while always executes the body at least once",
-      "while loop can't use increment operators",
-      "do-while runs faster"
-    ],
-    ans: 1,
-    exp: "The do-while loop checks its condition at the END, so the loop body executes at least once even if the condition is initially false."
-  },
-  {
-    cat: "Loops",
-    q: "Which punctuation mark MUST come after the closing parenthesis of a do-while loop?",
-    opts: [
-      "Nothing (no punctuation needed)",
-      "Colon :",
-      "Semicolon ;",
-      "Period ."
-    ],
-    ans: 2,
-    exp: "A do-while loop must be terminated with a semicolon after the while condition: do { ... } while(condition); — forgetting this is a common error."
-  },
-  {
-    cat: "Loops",
-    q: "A <strong>for</strong> loop is best used when:",
-    opts: [
-      "The number of iterations is unknown",
-      "You need to execute code at least once",
-      "You need to repeat for a fixed number of times",
-      "You want to check a condition at the end"
-    ],
-    ans: 2,
-    exp: "A for loop is ideal when you know exactly how many times you want to repeat a block of statements."
+    exp: "The do-while loop must end with a semicolon: do { ... } while(condition); — the other loops (for, while) should NOT have a semicolon after them. Forgetting this is a common error."
   },
   {
     cat: "Loops",
     q: "What is the ASCII value of the smiley face character used in the lecture task?",
-    opts: ["2", "1", "0", "32"],
-    ans: 1,
-    exp: "The lecture task mentions filling the screen with a smiley face that has ASCII value 1."
+    opts: [
+      "32",
+      "0",
+      "2",
+      "1"
+    ],
+    ans: 3,
+    exp: "The lecture task asks to fill the screen with a smiley face that has ASCII value 1."
   },
 
   // ── LECTURE 7: Nested Loops ───────────────────────────────────────────────
   {
     cat: "Nested Loops",
-    q: "What is a <strong>nested loop</strong>?",
+    q: "If the outer loop runs <strong>4</strong> times and the inner loop runs <strong>3</strong> times, how many total iterations does the inner loop perform?",
     opts: [
-      "A loop that only runs once",
-      "A loop inside another loop",
-      "A loop with multiple conditions",
-      "A loop that calls a function"
+      "4",
+      "3",
+      "7",
+      "12"
     ],
-    ans: 1,
-    exp: "A nested loop is a loop inside another loop. The inner loop completes all its iterations for each single iteration of the outer loop."
+    ans: 3,
+    exp: "Total inner loop iterations = outer × inner = 4 × 3 = 12. For each of the 4 outer iterations, the inner loop completes all 3 of its iterations."
   },
-  // ── MIXED / TEACHER TIPS ─────────────────────────────────────────────────
+  {
+    cat: "Nested Loops",
+    q: "Which of the following describes a nested for loop?",
+    opts: [
+      "A for loop with two condition checks",
+      "A for loop that skips iterations",
+      "A for loop inside another for loop",
+      "A for loop that runs indefinitely"
+    ],
+    ans: 2,
+    exp: "A nested for loop is simply a for loop placed inside another for loop. The inner loop completes all its iterations for each single iteration of the outer loop."
+  },
+  {
+    cat: "Nested Loops",
+    q: "The depth of nested loops depends on:",
+    opts: [
+      "The size of the input data only",
+      "The type of variables used",
+      "The compiler being used",
+      "The complexity of the problem being solved"
+    ],
+    ans: 3,
+    exp: "According to the lecture, the depth of nested loops depends on the complexity of the problem. You can have any number of nested loops as required."
+  },
+
+  // ── C BASICS / TIPS ───────────────────────────────────────────────────────
   {
     cat: "C Basics",
-    q: "Which format specifier should be used for a <strong>double</strong> in printf()?",
-    opts: ["%d", "%f", "%lf", "%c"],
+    q: "Which format specifier is used for a <strong>double</strong> in printf()?",
+    opts: [
+      "%lf",
+      "%d",
+      "%f",
+      "%dc"
+    ],
+    ans: 0,
+    exp: "Teacher's tip: Explore the format specifier for double. %lf (long float) is used for double in printf() and scanf()."
+  },
+  {
+    cat: "C Basics",
+    q: "Which of the following is a valid rule for constructing variable names in C?",
+    opts: [
+      "Variable names can start with a digit",
+      "Spaces are allowed in variable names",
+      "Variable names are case-sensitive",
+      "Keywords like 'int' can be used as variable names"
+    ],
     ans: 2,
-    exp: "Teacher's tip: Explore the format specifier for double. The correct format specifier for double in printf() is %lf (long float). For scanf() it is also %lf."
+    exp: "Variable names in C are case-sensitive (e.g., num and Num are different). They cannot start with a digit, cannot have spaces, and cannot be reserved keywords."
+  },
+  {
+    cat: "C Basics",
+    q: "Multi-line comments in C are written as:",
+    opts: [
+      "// comment starts and ends with //",
+      "## comment ##",
+      "<!-- comment -->",
+      "/* comment */"
+    ],
+    ans: 3,
+    exp: "Multi-line comments in C start with /* and end with */. Single-line comments use //."
   }
 ];
