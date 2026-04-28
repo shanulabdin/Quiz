@@ -507,3 +507,4 @@ const questions = [
     exp: "Multi-line comments in C start with /* and end with */. Single-line comments use //."
   }
 ];
+console.log(`Loaded ${questions.length} questions for PF-1 Quiz`);

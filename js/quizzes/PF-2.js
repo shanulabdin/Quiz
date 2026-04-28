@@ -409,3 +409,4 @@ const questions = [
     exp: "Teacher's tip: Explore the format specifier for double. The correct format specifier for double in printf() is %lf (long float). For scanf() it is also %lf."
   }
 ];
+console.log(`Loaded ${questions.length} questions for PF-1 Quiz`);
