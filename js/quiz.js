@@ -86,11 +86,11 @@ function showResults() {
   ring.style.background = `conic-gradient(var(--accent) ${pct * 3.6}deg, var(--border) ${pct * 3.6}deg)`;
 
   let title, sub;
-  if (pct >= 90) { title = "Outstanding! 🎉"; sub = "Excellent command of English grammar and vocabulary. You're well-prepared for your midterm!"; }
-  else if (pct >= 75) { title = "Great Work! 👏"; sub = "Strong performance! Review the questions you missed and you'll be fully ready for the exam."; }
-  else if (pct >= 60) { title = "Good Effort! 📚"; sub = "Solid foundation, but spend extra time on the topics where you struggled."; }
-  else if (pct >= 40) { title = "Keep Studying! 💪"; sub = "You have the basics down. Focus on reviewing tenses, clause types, and verb categories before your midterm."; }
-  else { title = "Need More Review 📖"; sub = "Go back through your notes on tenses, clauses, and verb types. Retake this quiz after reviewing!"; }
+  if (pct >= 90) { title = "Outstanding! 🎉"; sub = ""; }
+  else if (pct >= 75) { title = "Great Work! 👏"; sub = " "; }
+  else if (pct >= 60) { title = "Good Effort! 📚"; sub = ""; }
+  else if (pct >= 40) { title = "Keep Studying! 💪"; sub = ""; }
+  else { title = "Need More Review 📖"; sub = ""; }
 
   document.getElementById('results-title').textContent = title;
   document.getElementById('results-sub').textContent = sub;
