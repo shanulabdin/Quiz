@@ -1,4 +1,4 @@
-let currentQ = 38;
+let currentQ = 0;
 let score = 0;
 let answered = false;
 
