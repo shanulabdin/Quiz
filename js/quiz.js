@@ -87,11 +87,8 @@ function showResults() {
 
   let title, sub;
   if (pct >= 90) { title = "Outstanding! 🎉"; sub = ""; }
-<<<<<<< HEAD
+
   else if (pct >= 75) { title = "Great Work! 👏"; sub = ""; }
-=======
-  else if (pct >= 75) { title = "Great Work! 👏"; sub = " "; }
->>>>>>> a118a2637668613172d2a420b1f14d259aa1669f
   else if (pct >= 60) { title = "Good Effort! 📚"; sub = ""; }
   else if (pct >= 40) { title = "Keep Studying! 💪"; sub = ""; }
   else { title = "Need More Review 📖"; sub = ""; }
